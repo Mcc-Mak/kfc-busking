@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>六首詩歌 Chord譜 (簡報用)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #f5f0e8;  /* 米色背景，護眼 */
+            font-family: 'Segoe UI', 'Roboto', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
+            padding: 40px 20px;
+            color: #2c3e2f;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+        /* 每張投影片卡片風格 */
+        .slide {
+            background: #fffef7;
+            border-radius: 24px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            padding: 30px 32px 42px 32px;
+            break-inside: avoid;
+            page-break-inside: avoid;
+            transition: all 0.2s;
+            border-left: 8px solid #b4c8a8;
+        }
+        .slide:hover {
+            box-shadow: 0 12px 28px rgba(0,0,0,0.12);
+        }
+        /* 詩歌標題 + 調號 */
+        .song-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #e2dbc9;
+            padding-bottom: 12px;
+        }
+        .song-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: #4a6b3c;
+            letter-spacing: 1px;
+        }
+        .song-key {
+            font-size: 18px;
+            background: #e9f0e3;
+            padding: 6px 14px;
+            border-radius: 40px;
+            font-weight: 500;
+            color: #2a4b1e;
+        }
+        /* 歌詞區塊 - 等寬字型對齊和弦 */
+        .chord-lyric {
+            font-family: 'Courier New', 'SF Mono', 'Fira Code', monospace;
+            font-size: 18px;
+            line-height: 2.0;
+            white-space: pre-wrap;
+            background-color: #fefcf5;
+            padding: 20px 16px;
+            border-radius: 20px;
+            color: #1f2e1b;
+            margin: 16px 0 8px 0;
+            border: 1px solid #ece3d4;
+        }
+        /* 維持空白縮排，但保留可讀性 */
+        .chord-lyric p {
+            margin: 0.8em 0;
+        }
+        .info-note {
+            font-size: 14px;
+            color: #8a7b61;
+            margin-top: 16px;
+            text-align: right;
+            border-top: 1px dashed #e2dbc9;
+            padding-top: 14px;
+        }
+        hr {
+            margin: 8px 0;
+            border-color: #ddd2bb;
+        }
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+                margin: 0;
+            }
+            .slide {
+                box-shadow: none;
+                border: 1px solid #ccc;
+                page-break-after: always;
+                margin-bottom: 20px;
+            }
+            .song-title {
+                font-size: 28px;
+            }
+            .chord-lyric {
+                font-size: 16px;
+                white-space: pre-wrap;
+            }
+        }
+        footer {
+            text-align: center;
+            font-size: 13px;
+            color: #b8aa8c;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <!-- 1. 遇見神 -->
+    <div class="slide">
+        <div class="song-header">
+            <span class="song-title">遇見神</span>
+            <span class="song-key">Key：G</span>
+        </div>
+        <div class="chord-lyric">
+<pre>
+   G       D/F#     Em      D     C
+* 看天邊飄過雲海，告訴我幻變常在，
+       G       C   D
+  從來人在月缺下盼月圓。
+   G       D/F#     Em      D     C
+  天天總有上演，告訴你我動人故事，
+       G         F       D
+  動人情節留下伏線，細心飾演。
+
+   G       D/F#   Em            D
+# 如何人心粉碎像微塵，無言流淚滿身抖震，
+   C       G       C       D
+  如何遇見神被擁抱，再得起身。
+   G      D/F#     Em            D
+  明明平安彷彿天邊遠，流連遊蕩暗失方寸，
+   C      G       C       D       Em   D
+  然而遇見神被指引，再生精采心內滯。
+
+   Repeat * #
+   C         A#m        G   F   D
+  只因有你，今天有你，了不起。
+
+   G       D/F#     Em         D
+  誰無遐想一生精采佳美，由誰來導演出好戲，
+   C       G       C       D
+  人能遇見神是福氣，最終高飛。
+   G      D/F#     Em            D
+  從來難數高低多少次，何時成就那天失意，
+   C      G       C       D       Em  C  D  G
+  前途幻變時路雖遠，有這福氣心內暖。
+</pre>
+        </div>
+        <div class="info-note">📖 首句：看天邊飄過雲海 | 原唱：張敬軒</div>
+    </div>
+
+    <!-- 2. 十字架 (方文聰 玻璃海) -->
+    <div class="slide">
+        <div class="song-header">
+            <span class="song-title">十字架 (玻璃海)</span>
+            <span class="song-key">Key：A ｜ Play：G  (Capo 2)</span>
+        </div>
+        <div class="chord-lyric">
+<pre>
+[Intro]
+｜G ｜Em ｜C ｜D ｜
+
+[Verse 1]
+    G          D/F#        Em
+十 字 架， 極 殘 忍 刑 罰，
+    C          D          G
+充 滿 了 羞 恥， 還 更 羞 恥。
+    G          D/F#        Em
+但 是 你， 把 冠 冕 擲 下，
+    C          D          G
+釘 上 了， 一 切 轉 化。
+
+[Verse 2]
+    G          D/F#        Em
+十 字 架， 現 何 等 榮 耀，
+    C          D          G
+寶 血 已 傾 註， 除 去 羞 恥。
+    G          D/F#        Em
+十 字 架， 這 恩 典 記 號，
+    C          D          G
+主 你 已 顛 覆 世 界。
+
+[Chorus]
+    C          D          Bm         Em
+你 不 願， 有 一 個 沉 淪，
+    C          D          G
+你 甘 願， 降 卑 與 犧 牲。
+    C          D          Bm         Em
+這 今 後， 每 一 步， 全 是 恩 典 之 路，
+    C          D          G
+重 拾 勇 氣， 背 上 十 架。
+
+[Outro]
+｜C ｜D ｜G ｜
+</pre>
+        </div>
+        <div class="info-note">✝️ 曲詞：方文聰 (玻璃海樂團) | 原詞：十字架，極殘忍刑罰…充滿了羞恥</div>
+    </div>
+
+    <!-- 3. 回家 (Eternity Girls) -->
+    <div class="slide">
+        <div class="song-header">
+            <span class="song-title">回家</span>
+            <span class="song-key">Key：G</span>
+        </div>
+        <div class="chord-lyric">
+<pre>
+[Intro]
+｜G ｜D/F# ｜Em ｜Cm ｜
+
+[Verse]
+G           D/F#       Em      Cm
+步伐是否感覺疲倦了，現實令你感到無奈，
+G           D           Em
+只懂每日每夜忙碌裡，兜兜轉轉似沒了沒完。
+C           Bm          Am           D
+但願讓你知道神是愛，在路上每一秒同在，
+G           D/F#       Em      Cm
+可否接受這份純真愛，一生歡欣快樂精彩。
+
+[Chorus]
+C           D           G      D/F#    Em  －
+回家，將傷痛放下，看透俗世謊話，
+C           D           G
+迷失漆黑中，衪總把你念掛。
+C           D           G      D/F#    Em  －
+回家，即使新世代，全然皆冰冷，
+Am          D           G
+在這屋裡有主的愛，別再怕。
+
+(重複 Verse、Chorus)
+
+[Outro]
+Am          D           G
+在這屋裡有主的愛，不要再害怕。
+</pre>
+        </div>
+        <div class="info-note">🏠 首句：步伐是否感覺疲倦了 | 經典副歌：回家，將傷痛放下看透俗世謊話</div>
+    </div>
+
+    <!-- 4. 恩典太美麗 -->
+    <div class="slide">
+        <div class="song-header">
+            <span class="song-title">恩典太美麗</span>
+            <span class="song-key">Key：D (或 C調 Capo 2)</span>
+        </div>
+        <div class="chord-lyric">
+<pre>
+[Intro]
+Dsus2 | G | Dsus2 | G/A7 | Asus4 |
+
+[Verse]
+D         A         Bm          F#m
+這 天 同 聚 於 主 聖 殿，來 數 算 我 主 恩 典。
+G         A         F#m     Bm
+祂 以 性 命 來 使 我 完 全，來 使 我 兩 眼 重 見 光 線。
+Em7         C         A7
+還 給 我 勇 氣 面 對 挑 戰！
+
+[Chorus]
+        D         A
+恩 典 太 美 麗，無 甚 麼 可 取 替。
+Bm
+唯 求 將 心 全 然 給 主，
+G             D           E           A7
+來 彰 顯 主 愛 多 珍 貴。
+G       A       F#m     Bm
+終 生 愛 神，傾 心 傾 意 愛 別 人，
+G       A7      D
+才 覺 生 命 沒 有 枉 費。
+</pre>
+        </div>
+        <div class="info-note">🎶 這天同聚於主聖殿｜詩歌本：恩典太美麗</div>
+    </div>
+
+    <!-- 5. 榮雨降下 -->
+    <div class="slide">
+        <div class="song-header">
+            <span class="song-title">榮雨降下</span>
+            <span class="song-key">Key：G</span>
+        </div>
+        <div class="chord-lyric">
+<pre>
+[Intro]
+｜G ｜D ｜C ｜G D ｜
+
+[Verse]
+G           D/F#       C
+看，疾病與苦困，饑荒中瘟疫裡，
+G           D/F#       C
+看，憤怒和懼怕在蔓延。
+Cm          D
+神啊，祢定會憐憫傾聽，
+G           D/F#       C
+屬祢子民同心禱告。
+Am          C/D       D7
+願祢的旨意成就在這裡，榮耀得彰顯。
+
+[Chorus]
+G           D/F#
+求祢垂聽，城市吶喊哭泣，
+Em          G/D
+深陷了絕望陰影，渴望祢憐憫降臨。
+C           Bm        Em
+降下恩雨，轉化一切枯乾貧脊，
+Am          C/D       D7
+求主帶領，從軟弱裡興起。
+
+G           D/F#
+求主細聽，哭泣與吶喊聲，
+Em          G/D
+漆黑絕望的都市，渴望祢憐憫臨在。
+C           Bm        Em
+榮雨降下，枯乾的心在祢恩手中歷變化，
+
+[Outro]
+Am        G/B       C         D         G
+行公義，好憐憫，存謙卑的心，緊跟隨祢。
+</pre>
+        </div>
+        <div class="info-note">🌧️ 曲詞：劉頌賢｜求祢垂聽，城市吶喊哭泣</div>
+    </div>
+
+    <!-- 6. 迷失、重遇、愛主 -->
+    <div class="slide">
+        <div class="song-header">
+            <span class="song-title">迷失、重遇、愛主</span>
+            <span class="song-key">Key：Dm</span>
+        </div>
+        <div class="chord-lyric">
+<pre>
+[Verse 1]
+Dm                Bb
+迷失我城，如迷羊走失於那昏暗崎嶇路，
+      F           C
+鬧市孤島裡，忙亂掙扎裡，
+      Bb              A
+罪苦困逼裡，失去我心之所向。
+
+[Verse 2]
+Dm                Bb
+喚醒我靈，如迷羊扛於肩膊安放青草地，
+      F           C
+是祢不捨棄，在尋找主愛裡，
+      Bb              A
+話語中百般恩感裡，再重遇我主。
+
+[Chorus]
+Bb      C           Dm      Bb
+尋求祢的面，離開惡行謙卑禱告靠近祢，
+C           F        C
+(我)縱是軟弱，主恩典誇勝，
+Bb          C         Dm
+神話語立定，迷城裡得方向。
+
+Bb      C           Dm      Bb
+尋求祢的面，離開惡行謙卑禱告仰望祢，
+C           F        C
+獻奉我一生，委身作活祭，
+Bb        C       Dm
+靠主更新我靈，盡心性意力愛我恩主。
+
+[Bridge]
+Bb      C       Dm      Bb
+愛裡因主一起靠近，敬拜感恩高聲頌讚，
+Bb      C       Dm      A
+警醒的心彼此結連，回應這世代迷城作光。
+
+[Coda]
+Bb        C       Dm
+十架捨己背負，用愛祝福這城，
+Bb        C       Dm
+將福音宣告，使命願同往。
+</pre>
+        </div>
+        <div class="info-note">❤️ 迷失我城，如迷羊走失 | 呼召委身愛主</div>
+    </div>
+    <footer>🎹 可複製至 PowerPoint — 每張投影片對應一首詩歌 Chord譜</footer>
+</div>
+</body>
+</html>
