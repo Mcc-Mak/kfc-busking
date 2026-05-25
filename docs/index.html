@@ -21,7 +21,6 @@
             overflow: hidden;
         }
 
-        /* 頂部標籤列 (Topbar Tabs) */
         .topbar {
             background: #ffffffea;
             backdrop-filter: blur(4px);
@@ -62,7 +61,6 @@
             transform: scale(0.96);
         }
 
-        /* 主要內容區 — 一次只顯示一個詩歌卡片 */
         .content-area {
             flex: 1;
             overflow-y: auto;
@@ -83,7 +81,6 @@
             to { opacity: 1; transform: translateY(0);}
         }
 
-        /* 詩歌卡片設計 — 手機舒適 */
         .song-card {
             background: #ffffff;
             border-radius: 36px;
@@ -114,6 +111,14 @@
             font-weight: 600;
             color: #386a2a;
         }
+        .capo-badge {
+            background: #fce9d8;
+            padding: 6px 16px;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #b85c1a;
+        }
         .original-info {
             font-size: 0.75rem;
             color: #b5926e;
@@ -123,7 +128,6 @@
             gap: 16px;
             flex-wrap: wrap;
         }
-        /* 和弦譜區塊 */
         .chord-lyric {
             font-family: 'Courier New', 'SF Mono', 'Fira Code', monospace;
             font-size: 0.92rem;
@@ -174,7 +178,6 @@
                 line-height: 1.75;
             }
         }
-        /* 簡單 loading 無 */
         .small-hint {
             font-size: 0.7rem;
             background: #f6f0e6;
@@ -187,296 +190,288 @@
 <body>
 
 <div class="topbar" id="tabBar">
-    <button class="tab-button" data-song="song0">🌟 遇見神</button>
-    <button class="tab-button" data-song="song1">✝️ 十字架</button>
-    <button class="tab-button" data-song="song2">💖 愛是不保留</button>
-    <button class="tab-button" data-song="song3">🏡 回家</button>
-    <button class="tab-button" data-song="song4">🌧️ 榮雨降下</button>
+    <button class="tab-button" data-song="song0">🕊️ 安靜</button>
+    <button class="tab-button" data-song="song1">🌟 遇見神</button>
+    <button class="tab-button" data-song="song2">✝️ 十字架</button>
+    <button class="tab-button" data-song="song3">💖 愛是不保留</button>
+    <button class="tab-button" data-song="song4">🏡 回家</button>
+    <button class="tab-button" data-song="song5">🌧️ 榮雨降下</button>
 </div>
 
 <div class="content-area" id="contentArea">
-    <!-- 遇見神 F Key -->
+
+    <!-- 1. 安靜（皓瑜）Key: C (Capo 0) -->
     <div id="song0" class="song-panel">
+        <div class="song-card">
+            <div class="song-header">
+                <span class="song-title">安靜</span>
+                <span class="key-badge">Key：C</span>
+                <span class="capo-badge">Capo 0</span>
+            </div>
+            <div class="original-info">
+                <span>🎵 皓瑜</span>
+                <span>🕊️ 我要安靜知祢是神</span>
+            </div>
+            <div class="chord-lyric">
+                <pre>
+【Verse 1】
+| C  G  | Am   | F    D7   | G    |
+藏 我 在　翅 膀 蔭　　 下
+| C  G  | Am   | F    D7   | G    |
+遮 蓋 我　在 你 大 能 手 中
+
+【Chorus】
+| F    G    | C         | F    G    | Am        |
+當 大 海 翻 騰　波 濤 洶 湧 我 與 祢 展 翅　暴 風 上 空
+| F    G    | C    Am   | F    G    | C         |
+父 祢 仍 作 王　在 洪 水 中 我 要 安 靜　知 祢 是 神
+
+【Verse 2】
+| C  G  | Am   | F    D7   | G    |
+我 靈 安 息　在 基 督 裏
+| C  G  | Am   | F    D7   | G    |
+祢 大 能　使 我 安 然 信 靠
+
+【Chorus】
+| F    G    | C         | F    G    | Am        |
+當 大 海 翻 騰　波 濤 洶 湧 我 與 祢 展 翅　暴 風 上 空
+| F    G    | C    Am   | F    G    | C         |
+父 祢 仍 作 王　在 洪 水 中 我 要 安 靜　知 祢 是 神
+                </pre>
+            </div>
+            <div class="footer-note">
+                <span>📖 藏我在翅膀蔭下</span>
+                <span class="small-hint">🎸 C大調 | 原曲和弦不變</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. 遇見神（菜頭）Key: F (Capo 5) -->
+    <div id="song1" class="song-panel">
         <div class="song-card">
             <div class="song-header">
                 <span class="song-title">遇見神</span>
                 <span class="key-badge">Key：F</span>
+                <span class="capo-badge">Capo 5</span>
             </div>
             <div class="original-info">
-                <span>🎵 原調 G → 轉 F 調 (溫暖女聲/男聲適中)</span>
-                <span>🎤 原唱：張敬軒</span>
+                <span>🎵 菜頭</span>
+                <span>🌟 人能遇見神是福氣</span>
             </div>
             <div class="chord-lyric">
                 <pre>
-【Verse 1】
-F       C/E     Dm      C     Bb
-看天邊飄過雲海，告訴我幻變常在，
-      F       Bb  C
-從來人在月缺下盼月圓。
-
-F       C/E     Dm      C     Bb
-天天總有上演，告訴你我動人故事，
-      F       Eb      C
-動人情節留下伏線，細心飾演。
+【Verse】
+| C      G/B    | Am     Em     | F      C      | F      G      |
+看 天 邊 飄 過 雲 海　 告 訴 世 界 幻 變 常 在  從 來 人 在 月 缺 下 盼 月 圓
+| C      G/B    | Am     Em     | F      C      | Bb     G      |
+天 天 總 有 上 演　 告 訴 你 我 動 人 故 事　 動 人 情 節 留 下 伏 線　 細 心 飾 演
 
 【Chorus】
-F       C/E   Dm            C
-如何人心粉碎像微塵，無言流淚滿身抖震，
-Bb      F       Bb      C
-如何遇見神被擁抱，再得起身。
-F       C/E     Dm            C
-明明平安彷彿天邊遠，流連遊蕩暗失方寸，
-Bb      F       Bb      C       Dm   C
-然而遇見神被指引，再生精采心內滯。
+| C      G/B    | Am     G      | F      C      | F      G      |
+如 何 人 心 粉 碎 像 微 塵　 無 言 流 淚　 滿 身 抖 震 如何遇見神　被擁抱　再得起身
+| C      G/B    | Am     Em     | F      C      | F      G      | C    |
+明 明 平 安 彷 彿 天 邊 遠　 流 連 遊 盪　 暗 失 方 寸　 然 而 遇 見 神　 被 指 引　 再 生 精 采 心 內 滲
 
 【Bridge】
-Bb      Abm     F   Eb   C
-只因有你，今天有你，了不起。
-
-【尾】
-F       C/E     Dm         C
-誰無遐想一生精采佳美，由誰來導演出好戲，
-Bb      F       Bb      C
-人能遇見神是福氣，最終高飛。
-F       C/E     Dm            C
-從來難數高低多少次，何時成就那天失意，
-Bb      F       Bb      C       Dm  C  Bb  F
-前途幻變時路雖遠，有這福氣心內暖。
-                </pre>
-            </div>
-            <div class="footer-note">
-                <span>📖 看天邊飄過雲海 | 和弦轉F調 (原G->F)</span>
-                <span class="small-hint">🎸 建議Capo 5 或直接F調彈法</span>
-            </div>
-        </div>
-    </div>
-
-    <!-- 十字架 B Key (原A調升為B) -->
-    <div id="song1" class="song-panel">
-        <div class="song-card">
-            <div class="song-header">
-                <span class="song-title">十字架 (玻璃海)</span>
-                <span class="key-badge">Key：B</span>
-            </div>
-            <div class="original-info">
-                <span>✝️ 原調A → 升Key為B (更明亮)</span>
-                <span>曲詞：方文聰</span>
-            </div>
-            <div class="chord-lyric">
-                <pre>
-【Intro】
-｜B ｜G#m ｜E ｜F# ｜
-
-【Verse 1】
-B           D#m         E
-十 字 架， 極 殘 忍 刑 罰，
-C#m         F#          B
-充 滿 了 羞 恥， 還 更 羞 恥。
-B           D#m         E
-但 是 你， 把 冠 冕 擲 下，
-C#m         F#          B
-釘 上 了， 一 切 轉 化。
-
-【Verse 2】
-B           D#m         E
-十 字 架， 現 何 等 榮 耀，
-C#m         F#          B
-寶 血 已 傾 註， 除 去 羞 恥。
-B           D#m         E
-十 字 架， 這 恩 典 記 號，
-C#m         F#          B
-主 你 已 顛 覆 世 界。
+| F      F/E    | Dm     C      | Bb            | G             |
+只 因 有 你　　 今 天 有 你　 了 不 起
 
 【Chorus】
-E           F#          D#m         G#m
-你 不 願， 有 一 個 沉 淪，
-E           F#          B
-你 甘 願， 降 卑 與 犧 牲。
-E           F#          D#m         G#m
-這 今 後， 每 一 步， 全 是 恩 典 之 路，
-E           F#          B
-重 拾 勇 氣， 背 上 十 架。
+| C      G/B    | Am     G      | F      C      | F      G      |
+誰 無 遐 想 一 生 精 采 佳 美　 由 誰 來 導　 演 出 好 戲　人能遇見神　是福氣　最終高飛
+| C      G/B    | Am     G      | F      C      | F      G      | Am    |
+從 來 難 數 高 低 多 少 次　 何 時 成 就　 那 天 失 意　 前 途 幻 變 時　 路 雖 遠　 有 這 福 氣 心 內 暖
 
 【Outro】
-｜E ｜F# ｜B ｜
+| F      | Dm     | G      |  C      |
                 </pre>
             </div>
             <div class="footer-note">
-                <span>✝️ 十架寶血 B大調 (厚實張力)</span>
-                <span class="small-hint">🎸 B調和弦：B, D#m, E, F#, G#m</span>
+                <span>📖 看天邊飄過雲海</span>
+                <span class="small-hint">🎸 F大調 | Capo 5 彈C調指法</span>
             </div>
         </div>
     </div>
 
-    <!-- 愛是不保留 D Key -->
+    <!-- 3. 十字架（皓瑜）Key: B (Capo 2) -->
     <div id="song2" class="song-panel">
         <div class="song-card">
             <div class="song-header">
-                <span class="song-title">愛是不保留</span>
-                <span class="key-badge">Key：D</span>
+                <span class="song-title">十字架</span>
+                <span class="key-badge">Key：B</span>
+                <span class="capo-badge">Capo 2</span>
             </div>
             <div class="original-info">
-                <span>🎤 經典詩歌｜原唱：關心妍｜D 調深情版</span>
+                <span>🎵 皓瑜</span>
+                <span>✝️ 這恩典記號，主你已顛覆世界</span>
             </div>
             <div class="chord-lyric">
                 <pre>
 【Verse 1】
-D        A/C#     Bm       F#m
-常聽說世界愛沒長久，哪裡會有愛無盡頭？
-G        D/F#     Em       A
-塵俗的愛只在乎曾擁有，一刻燦爛便要走。
+| A    Bm7   | Esus  E     F#m7  |
+十 字 架， 極 殘 忍 刑 罰，
+| D    Bm7   | D     E     |
+充 滿 了 羞 恥， 還 更 羞 恥，
+| A    Bm7   | Esus  E     F#m7  | Bm7   F     | A     F    |
+但 是 你， 把 冠 冕 擲 下， 釘 上 了， 一 切 轉 化。
 
 【Verse 2】
-D        A/C#     Bm       F#m
-而我卻確信愛是恆久，碰到了你已無別求。
-G        D/F#     Em       A     A7
-無從解釋不可說明的愛，千秋過後仍長存不朽。
-
-【Pre-Chorus / 橋段】
-G        A        F#m      Bm
-誰人受痛苦被懸掛在木頭？至高的愛盡見於刺穿的手。
-G        D/F#     Em       A
-看！血在流反應愛沒保留，持續不死的愛到萬世不休！
+| A    Bm7   | E     A     | Bm7   | D     E     |
+十 字 架， 現 何 等 榮 耀， 寶血已傾注，除去羞恥， 
+| A    Bm7   | E     F#m7  | D     E     | A      | 
+十 字 架， 這 恩 典 記 號， 主 你 已 顛 覆 世 界。
 
 【Chorus】
-G   A   F#m   Bm
-惟求奉上生命全歸主所有，
-G        D/F#     Em   A    D
-要將一切盡獻於我主的手。
-G   A   F#m   Bm
-我已決定今生再沒所求，
-G      D/F#  Em   A    D
-惟望得主稱讚已足夠。
+| D    E     | A     | D    E     | A     |
+你 不 願， 有 一 個 沉 淪，
+| D    E     | C#    F#m   | Bm7   F     | A     |
+這 今 後， 每 一 步， 全 是 恩 典 之 路， 重 拾 勇 氣， 背 上 十 架。
                 </pre>
             </div>
             <div class="footer-note">
-                <span>🎚️ 永恆的愛｜D大調溫暖感動</span>
-                <span class="small-hint">🎹 和弦進行｜ D - A - Bm - G</span>
+                <span>✝️ 十字架，現何等榮耀</span>
+                <span class="small-hint">🎸 B大調 | Capo 2 彈A調指法</span>
             </div>
         </div>
     </div>
 
-    <!-- 回家 A Key (原G調升為A) -->
+    <!-- 4. 愛是不保留（菜頭）Key: F (Capo 5) -->
     <div id="song3" class="song-panel">
         <div class="song-card">
             <div class="song-header">
-                <span class="song-title">回家</span>
-                <span class="key-badge">Key：A</span>
+                <span class="song-title">愛是不保留</span>
+                <span class="key-badge">Key：F</span>
+                <span class="capo-badge">Capo 5</span>
             </div>
             <div class="original-info">
-                <span>🏠 原調 G → 轉 A 調 (更明亮溫暖)</span>
-                <span>經典呼喚「回家，將傷痛放下」</span>
+                <span>🎵 菜頭</span>
+                <span>💖 持續不死的愛到萬世不休</span>
             </div>
             <div class="chord-lyric">
                 <pre>
-【Intro】
-｜A ｜E/G# ｜F#m ｜Cm ｜
-
 【Verse】
-A           E/G#       F#m      Cm
-步伐是否感覺疲倦了，現實令你感到無奈，
-A           E           F#m
-只懂每日每夜忙碌裡，兜兜轉轉似沒了沒完。
-D           C#m         Bm          E
-但願讓你知道神是愛，在路上每一秒同在，
-A           E/G#       F#m      Cm
-可否接受這份純真愛，一生歡欣快樂精彩。
+| C    | Em   | F     | Gsus4 G     |
+常 聽 說 世 界 愛 沒 長 久 哪裡會有愛無盡頭
+| F    G    | E7    Am    | F     D7    G     |
+塵 俗 的 愛 只 在 乎 曾 擁 有 一刻燦爛便要走
+| C    | Em   | F     | G     |
+而 我 卻 確 信 愛 是 恆 久 碰到了你已無別求
+| F    G    | E7    Am    | F     D7    | Gsus4 G    |
+無 從 解 釋 不 可 說 明 的 愛 千秋過後仍長存不朽
 
 【Chorus】
-D           E           A      E/G#    F#m  －
-回家，將傷痛放下，看透俗世謊話，
-D           E           A
-迷失漆黑中，祂總把你念掛。
-D           E           A      E/G#    F#m  －
-回家，即使新世代，全然皆冰冷，
-Bm          E           A
-在這屋裡有主的愛，別再怕。
-
-【尾】
-Bm          E           A
-在這屋裡有主的愛，不要再害怕。
+| C    G    | Am           | F     C     | D     G7   |
+誰 人 受 痛 苦 被 懸 掛 在 木 頭 至高的愛盡見於刺穿的手
+| F    G    | Em    Am    | F     D     | Gsus4 G    |
+看 血 在 流 反 映 愛 沒 保 留 持續不死的愛到萬世不休
+| C    G    | Am           | F     C     | D     G7   |
+惟 求 奉 上 生 命 全 歸 主 所 有 要將一切盡獻於我主的手
+| F    G    | Em    Am    | Dm    F     G     | C    |
+我 已 決 定 今 生 再 沒 所 求 惟望得主稱讚已足夠
                 </pre>
             </div>
             <div class="footer-note">
-                <span>🏡 「回家」A調張力｜街頭感動首選</span>
-                <span class="small-hint">🎸 可Capo2 on G調 或直接A和弦系統</span>
+                <span>💖 誰人受痛苦被懸掛在木頭</span>
+                <span class="small-hint">🎸 F大調 | Capo 5 彈C調指法</span>
             </div>
         </div>
     </div>
 
-    <!-- 榮雨降下 G Key (原調保留G) -->
+    <!-- 5. 回家（雪清）Key: Bb (Capo 3) - 保持原Key Bb，顯示Capo 3 -->
     <div id="song4" class="song-panel">
+        <div class="song-card">
+            <div class="song-header">
+                <span class="song-title">回家</span>
+                <span class="key-badge">Key：Bb</span>
+                <span class="capo-badge">Capo 3</span>
+            </div>
+            <div class="original-info">
+                <span>🎵 雪清</span>
+                <span>🏡 在這屋裡，有主的愛，別再怕</span>
+            </div>
+            <div class="chord-lyric">
+                <pre>
+【Verse】
+| G      D/F#   | Em     Cm     | G      | D      | Em     |
+步伐是否感覺疲倦了？ 現實令你感到無奈...
+| C      Bm     | Am     | D      |
+只懂每日每夜忙碌裡，兜兜轉轉似沒了沒完。
+| G      D/F#   | Em     Cm     | G      | D      | Em     |
+但願讓你知道神是愛，在路上每一秒同在，
+| C      Bm     | Am     | D      |
+可否接受這份純真愛，一生歡欣快樂精彩。
+
+【Chorus】
+| C      D      | G      D/F#   Em     |
+回家，將傷痛放下，看透俗世謊話，
+| C      D      | G      |
+迷失漆黑中，祂總把你念掛。
+| C      D      | G      D/F#   Em     |
+回家，即使新世代全然皆冰冷，
+| Am     D      | G      |
+在這屋裡，有主的愛，別再怕。
+| Am     D      | D      | G       |
+(在這屋裡有主的愛，不要害怕。)
+                </pre>
+            </div>
+            <div class="footer-note">
+                <span>🏡 回家，將傷痛放下</span>
+                <span class="small-hint">🎸 Bb大調 | Capo 3 彈G調指法（和弦保持原樣：G, D/F#, Em, C, D, Am）</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 6. 榮雨降下（菜頭）Key: G (Capo 0) -->
+    <div id="song5" class="song-panel">
         <div class="song-card">
             <div class="song-header">
                 <span class="song-title">榮雨降下</span>
                 <span class="key-badge">Key：G</span>
+                <span class="capo-badge">Capo 0</span>
             </div>
             <div class="original-info">
-                <span>🌧️ 曲詞：劉頌賢｜G大調 轉化禱告詩歌</span>
+                <span>🎵 菜頭</span>
+                <span>🌧️ 榮雨降下，枯乾的心在祢恩手中歷變化</span>
             </div>
             <div class="chord-lyric">
                 <pre>
-【Intro】
-｜G ｜D ｜C ｜G D ｜
-
-【Verse 1】
-G           D/F#       C
-看，疾病與苦困，饑荒中瘟疫裡，
-G           D/F#       C
-看，憤怒和懼怕在蔓延。
-Cm          D
-神啊，祢定會憐憫傾聽，
-G           D/F#       C
-屬祢子民同心禱告。
-Am          C/D       D7
-願祢的旨意成就在這裡，榮耀得彰顯。
+【Verse】
+| G      | D/F#   | C      | Cm     | D      |
+看 疾病與苦困 饑荒中 瘟疫裡 看 憤怒和懼怕 在蔓延 
+| G      | D/F#   | C      | Am     | C/D    | D7     |
+神祢 定會憐憫傾聽 屬祢子民同心禱告 願祢旨意成就在這裡 榮耀得彰顯
 
 【Chorus】
-G           D/F#
-求祢垂聽，城市吶喊哭泣，
-Em          G/D
-深陷了絕望陰影，渴望祢憐憫降臨。
-C           Bm        Em
-降下恩雨，轉化一切枯乾貧脊，
-Am          C/D       D7
-求主帶領，從軟弱裡興起。
-
-G           D/F#
-求主細聽，哭泣與吶喊聲，
-Em          G/D
-漆黑絕望的都市，渴望祢憐憫臨在。
-C           Bm        Em
-榮雨降下，枯乾的心在祢恩手中歷變化，
-
-【Outro】
-Am        G/B       C         D         G
-行公義，好憐憫，存謙卑的心，緊跟隨祢。
+| G      | D/F#   | Em     | G/D    |
+求祢細聽 哭泣與吶喊聲 漆黑絕望的都市（香港）渴望祢憐憫臨在
+| C      | Bm     Em     | Am     | C/D    D7     |
+榮雨降下 枯乾的都市能轉化 求主帶領 從軟弱裡興起
+| G      | D/F#   | Em     | G/D    |
+求主細聽 哭泣與吶喊聲 漆黑絕望的都市（香港）渴望祢憐憫臨在
+| C      | Bm     Em     | Am     G/B    | C      D      | G      |
+榮雨降下 枯乾的心 在祢恩手中歷變化 行公義 好憐憫 存謙卑的心 踏主足印
                 </pre>
             </div>
             <div class="footer-note">
-                <span>🌧️ 轉化城市｜求祢垂聽，榮雨降下</span>
-                <span class="small-hint">🔥 G Key 適合樂團與街頭呼求</span>
+                <span>🌧️ 求祢細聽，哭泣與吶喊聲</span>
+                <span class="small-hint">🎸 G大調 | 原曲和弦不變</span>
             </div>
         </div>
     </div>
 </div>
 
 <script>
-    // 切換邏輯: 點擊tab顯示對應的詩歌面板，一次僅一首
     const tabs = document.querySelectorAll('.tab-button');
     const panels = document.querySelectorAll('.song-panel');
     
     function switchToSong(songId) {
-        // 隱藏所有panel
         panels.forEach(panel => {
             panel.classList.remove('active-panel');
         });
-        // 顯示選中的
         const targetPanel = document.getElementById(songId);
         if(targetPanel) {
             targetPanel.classList.add('active-panel');
         }
-        // 更新按鈕active樣式
         tabs.forEach(btn => {
             const songVal = btn.getAttribute('data-song');
             if(songVal === songId) {
@@ -487,32 +482,20 @@ Am        G/B       C         D         G
         });
     }
 
-    // 為每個tab綁定點擊事件
     tabs.forEach(btn => {
         btn.addEventListener('click', (e) => {
             const songId = btn.getAttribute('data-song');
             if(songId) {
                 switchToSong(songId);
-                // 將當前tab滾動至可視區（手機優化）
                 btn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
             }
         });
     });
 
-    // 設定預設顯示第一首 (遇見神)
-    // 若URL hash指定?可擴充
-    const defaultSong = 'song0';
-    switchToSong(defaultSong);
+    // 預設顯示第一首：安靜
+    switchToSong('song0');
     
-    // 增加滑動/觸屏優化: 保留內容滾動順暢
-    const contentDiv = document.querySelector('.content-area');
-    // 確保touch不影響tab切換
-    let startX = 0;
-    // 可增加簡單左右滑動切換? 為避免干擾滾動，不強制，但提供選配
-    // 完全符合預期: 點tab切換
-    // 另外增加標籤高亮記憶
     window.addEventListener('load', () => {
-        // 若某些手機高度調整
         document.body.style.overflow = 'hidden';
     });
 </script>
