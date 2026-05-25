@@ -2,394 +2,388 @@
 <html lang="zh-Hant">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>六首詩歌 Chord譜 (簡報用)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
+    <title>敬拜詩歌和弦譜｜街頭Busking版</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
+
         body {
-            background-color: #f5f0e8;  /* 米色背景，護眼 */
-            font-family: 'Segoe UI', 'Roboto', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
-            padding: 40px 20px;
-            color: #2c3e2f;
+            background: #fef9e8;  /* 暖色底，護眼舒適 */
+            font-family: system-ui, -apple-system, 'Segoe UI', 'Noto Sans', 'Helvetica Neue', Helvetica, 'Roboto', sans-serif;
+            padding: 20px 16px 60px;
+            color: #1e2a2f;
         }
+
+        /* 主容器 — 手機優先 */
         .container {
-            max-width: 1000px;
+            max-width: 680px;
             margin: 0 auto;
+        }
+
+        /* 標題區塊 */
+        .header {
+            text-align: center;
+            margin-bottom: 28px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #e2c7a1;
+        }
+        h1 {
+            font-size: 1.9rem;
+            letter-spacing: -0.3px;
+            color: #b45f2b;
+            font-weight: 700;
+        }
+        .sub {
+            color: #7a5a4a;
+            font-size: 0.85rem;
+            margin-top: 6px;
+        }
+
+        /* 詩歌卡片 — 觸控友善 */
+        .song-card {
+            background: #ffffffdd;
+            backdrop-filter: blur(0px);
+            background: white;
+            border-radius: 32px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05), 0 2px 4px rgba(0,0,0,0.02);
+            margin-bottom: 28px;
+            padding: 20px 18px;
+            transition: all 0.1s ease;
+            border: 1px solid #f7e5ce;
+        }
+
+        .song-title {
+            font-size: 1.7rem;
+            font-weight: 700;
+            color: #c3612b;
+            border-left: 6px solid #e6b17e;
+            padding-left: 14px;
+            margin-bottom: 8px;
             display: flex;
-            flex-direction: column;
-            gap: 40px;
-        }
-        /* 每張投影片卡片風格 */
-        .slide {
-            background: #fffef7;
-            border-radius: 24px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-            padding: 30px 32px 42px 32px;
-            break-inside: avoid;
-            page-break-inside: avoid;
-            transition: all 0.2s;
-            border-left: 8px solid #b4c8a8;
-        }
-        .slide:hover {
-            box-shadow: 0 12px 28px rgba(0,0,0,0.12);
-        }
-        /* 詩歌標題 + 調號 */
-        .song-header {
-            display: flex;
-            justify-content: space-between;
             align-items: baseline;
             flex-wrap: wrap;
-            margin-bottom: 20px;
-            border-bottom: 2px solid #e2dbc9;
-            padding-bottom: 12px;
+            justify-content: space-between;
         }
-        .song-title {
-            font-size: 32px;
-            font-weight: 700;
-            color: #4a6b3c;
+        .key-badge {
+            font-size: 0.9rem;
+            background: #f0e0cd;
+            padding: 5px 12px;
+            border-radius: 40px;
+            font-weight: normal;
+            color: #8b4b1f;
             letter-spacing: 1px;
         }
-        .song-key {
-            font-size: 18px;
-            background: #e9f0e3;
-            padding: 6px 14px;
-            border-radius: 40px;
-            font-weight: 500;
-            color: #2a4b1e;
+        .original-ref {
+            font-size: 0.75rem;
+            color: #ac8e6f;
+            margin-bottom: 14px;
+            padding-left: 20px;
         }
-        /* 歌詞區塊 - 等寬字型對齊和弦 */
-        .chord-lyric {
-            font-family: 'Courier New', 'SF Mono', 'Fira Code', monospace;
-            font-size: 18px;
-            line-height: 2.0;
+
+        /* 和弦譜排版 — 保留原歌詞結構，易讀 */
+        .chord-line {
+            font-family: 'SF Mono', 'Courier New', monospace;
+            font-size: 0.9rem;
+            line-height: 1.7;
+            margin: 8px 0;
             white-space: pre-wrap;
-            background-color: #fefcf5;
-            padding: 20px 16px;
-            border-radius: 20px;
-            color: #1f2e1b;
-            margin: 16px 0 8px 0;
-            border: 1px solid #ece3d4;
+            word-break: break-word;
+            color: #2b4f3b;
         }
-        /* 維持空白縮排，但保留可讀性 */
-        .chord-lyric p {
-            margin: 0.8em 0;
+        .chord {
+            font-weight: 700;
+            color: #b85c1a;
+            background: #fff2e4;
+            display: inline-block;
+            padding: 0 2px;
+            border-radius: 8px;
         }
-        .info-note {
-            font-size: 14px;
-            color: #8a7b61;
-            margin-top: 16px;
-            text-align: right;
-            border-top: 1px dashed #e2dbc9;
-            padding-top: 14px;
+        .lyric-line {
+            font-size: 1rem;
+            line-height: 1.55;
+            margin: 5px 0;
+            color: #2f3e3c;
+        }
+        /* 段落分隔 */
+        .verse-space {
+            margin-top: 14px;
+            margin-bottom: 14px;
         }
         hr {
-            margin: 8px 0;
-            border-color: #ddd2bb;
+            margin: 16px 0;
+            border: 0;
+            height: 1px;
+            background: linear-gradient(to right, #f0dbc4, transparent);
         }
-        @media print {
+        .small-note {
+            font-size: 0.7rem;
+            color: #bb9b78;
+            margin-top: 12px;
+            border-top: 1px dashed #eedbc8;
+            padding-top: 10px;
+            text-align: right;
+        }
+        .chord-hint {
+            background: #faf1e6;
+            border-radius: 16px;
+            padding: 4px 12px;
+            font-size: 0.75rem;
+            display: inline-block;
+            margin-bottom: 10px;
+            color: #b0652c;
+        }
+
+        /* 行動裝置優化: 按鈕感應區域大, 字級舒適 */
+        @media (max-width: 560px) {
             body {
-                background: white;
-                padding: 0;
-                margin: 0;
+                padding: 16px 12px 50px;
             }
-            .slide {
-                box-shadow: none;
-                border: 1px solid #ccc;
-                page-break-after: always;
-                margin-bottom: 20px;
+            .song-card {
+                padding: 16px 14px;
             }
             .song-title {
-                font-size: 28px;
+                font-size: 1.5rem;
             }
-            .chord-lyric {
-                font-size: 16px;
-                white-space: pre-wrap;
+            .chord-line {
+                font-size: 0.85rem;
+            }
+            .lyric-line {
+                font-size: 0.95rem;
             }
         }
+
         footer {
             text-align: center;
-            font-size: 13px;
-            color: #b8aa8c;
-            margin-top: 20px;
+            font-size: 0.7rem;
+            color: #bbaa92;
+            margin-top: 30px;
+            padding-top: 16px;
+            border-top: 1px solid #e9dccc;
+        }
+        button.copy-btn {
+            background: none;
+            border: none;
+            font-size: 0.7rem;
+            float: right;
+            color: #be8b60;
+            margin-top: -5px;
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
 <div class="container">
-    <!-- 1. 遇見神 -->
-    <div class="slide">
-        <div class="song-header">
-            <span class="song-title">遇見神</span>
-            <span class="song-key">Key：G</span>
-        </div>
-        <div class="chord-lyric">
-<pre>
-   G       D/F#     Em      D     C
-* 看天邊飄過雲海，告訴我幻變常在，
-       G       C   D
-  從來人在月缺下盼月圓。
-   G       D/F#     Em      D     C
-  天天總有上演，告訴你我動人故事，
-       G         F       D
-  動人情節留下伏線，細心飾演。
-
-   G       D/F#   Em            D
-# 如何人心粉碎像微塵，無言流淚滿身抖震，
-   C       G       C       D
-  如何遇見神被擁抱，再得起身。
-   G      D/F#     Em            D
-  明明平安彷彿天邊遠，流連遊蕩暗失方寸，
-   C      G       C       D       Em   D
-  然而遇見神被指引，再生精采心內滯。
-
-   Repeat * #
-   C         A#m        G   F   D
-  只因有你，今天有你，了不起。
-
-   G       D/F#     Em         D
-  誰無遐想一生精采佳美，由誰來導演出好戲，
-   C       G       C       D
-  人能遇見神是福氣，最終高飛。
-   G      D/F#     Em            D
-  從來難數高低多少次，何時成就那天失意，
-   C      G       C       D       Em  C  D  G
-  前途幻變時路雖遠，有這福氣心內暖。
-</pre>
-        </div>
-        <div class="info-note">📖 首句：看天邊飄過雲海 | 原唱：張敬軒</div>
+    <div class="header">
+        <h1>🎸 街頭敬拜和弦譜</h1>
+        <div class="sub">Busking 版｜轉調＋手機友善編排</div>
     </div>
 
-    <!-- 2. 十字架 (方文聰 玻璃海) -->
-    <div class="slide">
-        <div class="song-header">
-            <span class="song-title">十字架 (玻璃海)</span>
-            <span class="song-key">Key：A ｜ Play：G  (Capo 2)</span>
+    <!-- 詩歌1: 遇見神 (F Key) 原網站G調，轉F調: 全部降一個全音? 原曲 G -> F (降2半音) 較嚴謹，但和弦級數不變 -->
+    <div class="song-card" id="song-meetGod">
+        <div class="song-title">
+            🌟 遇見神 <span class="key-badge">Key：F</span>
         </div>
-        <div class="chord-lyric">
-<pre>
-[Intro]
-｜G ｜Em ｜C ｜D ｜
-
-[Verse 1]
-    G          D/F#        Em
-十 字 架， 極 殘 忍 刑 罰，
-    C          D          G
-充 滿 了 羞 恥， 還 更 羞 恥。
-    G          D/F#        Em
-但 是 你， 把 冠 冕 擲 下，
-    C          D          G
-釘 上 了， 一 切 轉 化。
-
-[Verse 2]
-    G          D/F#        Em
-十 字 架， 現 何 等 榮 耀，
-    C          D          G
-寶 血 已 傾 註， 除 去 羞 恥。
-    G          D/F#        Em
-十 字 架， 這 恩 典 記 號，
-    C          D          G
-主 你 已 顛 覆 世 界。
-
-[Chorus]
-    C          D          Bm         Em
-你 不 願， 有 一 個 沉 淪，
-    C          D          G
-你 甘 願， 降 卑 與 犧 牲。
-    C          D          Bm         Em
-這 今 後， 每 一 步， 全 是 恩 典 之 路，
-    C          D          G
-重 拾 勇 氣， 背 上 十 架。
-
-[Outro]
-｜C ｜D ｜G ｜
-</pre>
+        <div class="original-ref">原調：G｜轉 F 調｜原唱：張敬軒</div>
+        <div class="chord-hint">🎵 轉調說明：G調和弦平移至F調 (每個和弦降一個全音)｜參考指法：Capo 5 或直接彈F調</div>
+        
+        <div class="verse-space">
+            <div class="lyric-line"><span class="chord">F</span>　　　 <span class="chord">C/E</span>　　 <span class="chord">Dm</span>　　 <span class="chord">C</span>　 <span class="chord">Bb</span></div>
+            <div class="lyric-line">看天邊飄過雲海，告訴我幻變常在，</div>
+            <div class="lyric-line"><span class="chord">　　F</span>　　　 <span class="chord">Bb</span>　 <span class="chord">C</span></div>
+            <div class="lyric-line">從來人在月缺下盼月圓。</div>
         </div>
-        <div class="info-note">✝️ 曲詞：方文聰 (玻璃海樂團) | 原詞：十字架，極殘忍刑罰…充滿了羞恥</div>
+        <div class="verse-space">
+            <div class="lyric-line"><span class="chord">F</span>　　　 <span class="chord">C/E</span>　　 <span class="chord">Dm</span>　　 <span class="chord">C</span>　 <span class="chord">Bb</span></div>
+            <div class="lyric-line">天天總有上演，告訴你我動人故事，</div>
+            <div class="lyric-line"><span class="chord">　　F</span>　　　 <span class="chord">Eb</span>　 <span class="chord">C</span></div>
+            <div class="lyric-line">動人情節留下伏線，細心飾演。</div>
+        </div>
+        <div class="verse-space">
+            <div class="lyric-line"><span class="chord">F</span>　　　 <span class="chord">C/E</span>　 <span class="chord">Dm</span>　　　　　 <span class="chord">C</span></div>
+            <div class="lyric-line">如何人心粉碎像微塵，無言流淚滿身抖震，</div>
+            <div class="lyric-line"><span class="chord">Bb</span>　 <span class="chord">F</span>　　 <span class="chord">Bb</span>　　 <span class="chord">C</span></div>
+            <div class="lyric-line">如何遇見神被擁抱，再得起身。</div>
+            <div class="lyric-line"><span class="chord">F</span>　　 <span class="chord">C/E</span>　　 <span class="chord">Dm</span>　　　　　 <span class="chord">C</span></div>
+            <div class="lyric-line">明明平安彷彿天邊遠，流連遊蕩暗失方寸，</div>
+            <div class="lyric-line"><span class="chord">Bb</span>　 <span class="chord">F</span>　　 <span class="chord">Bb</span>　　 <span class="chord">C</span>　　 <span class="chord">Dm</span>　 <span class="chord">C</span></div>
+            <div class="lyric-line">然而遇見神被指引，再生精采心內滯。</div>
+        </div>
+        <div class="verse-space">
+            <div class="lyric-line"><span class="chord">Bb</span>　　 <span class="chord">Abm</span>　　 <span class="chord">F</span>　 <span class="chord">Eb</span>　 <span class="chord">C</span></div>
+            <div class="lyric-line">只因有你，今天有你，了不起。</div>
+        </div>
+        <div class="verse-space">
+            <div class="lyric-line"><span class="chord">F</span>　　　 <span class="chord">C/E</span>　　 <span class="chord">Dm</span>　　　 <span class="chord">C</span></div>
+            <div class="lyric-line">誰無遐想一生精采佳美，由誰來導演出好戲，</div>
+            <div class="lyric-line"><span class="chord">Bb</span>　 <span class="chord">F</span>　　 <span class="chord">Bb</span>　　 <span class="chord">C</span></div>
+            <div class="lyric-line">人能遇見神是福氣，最終高飛。</div>
+            <div class="lyric-line"><span class="chord">F</span>　　 <span class="chord">C/E</span>　　 <span class="chord">Dm</span>　　　　　 <span class="chord">C</span></div>
+            <div class="lyric-line">從來難數高低多少次，何時成就那天失意，</div>
+            <div class="lyric-line"><span class="chord">Bb</span>　 <span class="chord">F</span>　　 <span class="chord">Bb</span>　　 <span class="chord">C</span>　　 <span class="chord">Dm</span> <span class="chord">C</span> <span class="chord">Bb</span> <span class="chord">F</span></div>
+            <div class="lyric-line">前途幻變時路雖遠，有這福氣心內暖。</div>
+        </div>
+        <div class="small-note">🎸 轉F調：原G -> F，D/F# -> C/E，Em -> Dm，C -> Bb，D -> C，F->Eb</div>
     </div>
 
-    <!-- 3. 回家 (Eternity Girls) -->
-    <div class="slide">
-        <div class="song-header">
-            <span class="song-title">回家</span>
-            <span class="song-key">Key：G</span>
+    <!-- 詩歌2: 十字架 (B Key) 原網站 Play G (Capo2 原A) -> 轉B調: 提升一個全音 從A調→B調 (或從G調直接推算)，採用B大調和弦 -->
+    <div class="song-card" id="song-cross">
+        <div class="song-title">
+            ✝️ 十字架 <span class="key-badge">Key：B</span>
         </div>
-        <div class="chord-lyric">
-<pre>
-[Intro]
-｜G ｜D/F# ｜Em ｜Cm ｜
-
-[Verse]
-G           D/F#       Em      Cm
-步伐是否感覺疲倦了，現實令你感到無奈，
-G           D           Em
-只懂每日每夜忙碌裡，兜兜轉轉似沒了沒完。
-C           Bm          Am           D
-但願讓你知道神是愛，在路上每一秒同在，
-G           D/F#       Em      Cm
-可否接受這份純真愛，一生歡欣快樂精彩。
-
-[Chorus]
-C           D           G      D/F#    Em  －
-回家，將傷痛放下，看透俗世謊話，
-C           D           G
-迷失漆黑中，衪總把你念掛。
-C           D           G      D/F#    Em  －
-回家，即使新世代，全然皆冰冷，
-Am          D           G
-在這屋裡有主的愛，別再怕。
-
-(重複 Verse、Chorus)
-
-[Outro]
-Am          D           G
-在這屋裡有主的愛，不要再害怕。
-</pre>
+        <div class="original-ref">原曲：玻璃海｜原調A｜轉B調 (Capo 2 on A調彈A調? 直接提供B調和弦)</div>
+        <div class="chord-hint">🎸 B調和弦：B, D#m, E, F#, G#m, C#m 等｜親民按法可Capo4 G調指法</div>
+        
+        <div class="verse-space">
+            <div class="lyric-line"><span class="chord">B</span>　　　 <span class="chord">D#m</span>　　 <span class="chord">E</span></div>
+            <div class="lyric-line">十 字 架， 極 殘 忍 刑 罰，</div>
+            <div class="lyric-line"><span class="chord">C#m</span>　 <span class="chord">F#</span>　　 <span class="chord">B</span></div>
+            <div class="lyric-line">充 滿 了 羞 恥， 還 更 羞 恥。</div>
+            <div class="lyric-line"><span class="chord">B</span>　　　 <span class="chord">D#m</span>　　 <span class="chord">E</span></div>
+            <div class="lyric-line">但 是 你， 把 冠 冕 擲 下，</div>
+            <div class="lyric-line"><span class="chord">C#m</span>　 <span class="chord">F#</span>　　 <span class="chord">B</span></div>
+            <div class="lyric-line">釘 上 了， 一 切 轉 化。</div>
         </div>
-        <div class="info-note">🏠 首句：步伐是否感覺疲倦了 | 經典副歌：回家，將傷痛放下看透俗世謊話</div>
+        <div class="verse-space">
+            <div class="lyric-line"><span class="chord">B</span>　　　 <span class="chord">D#m</span>　　 <span class="chord">E</span></div>
+            <div class="lyric-line">十 字 架， 現 何 等 榮 耀，</div>
+            <div class="lyric-line"><span class="chord">C#m</span>　 <span class="chord">F#</span>　　 <span class="chord">B</span></div>
+            <div class="lyric-line">寶 血 已 傾 註， 除 去 羞 恥。</div>
+            <div class="lyric-line"><span class="chord">B</span>　　　 <span class="chord">D#m</span>　　 <span class="chord">E</span></div>
+            <div class="lyric-line">十 字 架， 這 恩 典 記 號，</div>
+            <div class="lyric-line"><span class="chord">C#m</span>　 <span class="chord">F#</span>　　 <span class="chord">B</span></div>
+            <div class="lyric-line">主 你 已 顛 覆 世 界。</div>
+        </div>
+        <div class="verse-space">
+            <div class="lyric-line"><span class="chord">E</span>　　　 <span class="chord">F#</span>　　 <span class="chord">D#m</span>　　 <span class="chord">G#m</span></div>
+            <div class="lyric-line">你 不 願， 有 一 個 沉 淪，</div>
+            <div class="lyric-line"><span class="chord">E</span>　　　 <span class="chord">F#</span>　　 <span class="chord">B</span></div>
+            <div class="lyric-line">你 甘 願， 降 卑 與 犧 牲。</div>
+            <div class="lyric-line"><span class="chord">E</span>　　　 <span class="chord">F#</span>　　 <span class="chord">D#m</span>　　 <span class="chord">G#m</span></div>
+            <div class="lyric-line">這 今 後， 每 一 步， 全 是 恩 典 之 路，</div>
+            <div class="lyric-line"><span class="chord">E</span>　　　 <span class="chord">F#</span>　　 <span class="chord">B</span></div>
+            <div class="lyric-line">重 拾 勇 氣， 背 上 十 架。</div>
+        </div>
+        <div class="small-note">🔨 B調和弦譜｜源自「十字架,極殘忍刑罰」；原曲豐富情感</div>
     </div>
 
-    <!-- 4. 恩典太美麗 -->
-    <div class="slide">
-        <div class="song-header">
-            <span class="song-title">恩典太美麗</span>
-            <span class="song-key">Key：D (或 C調 Capo 2)</span>
+    <!-- 愛是不保留 (D Key) 原網站沒有此首，常見經典詩歌，依照原版本編寫和弦 D key -->
+    <div class="song-card" id="song-loveRemain">
+        <div class="song-title">
+            💖 愛是不保留 <span class="key-badge">Key：D</span>
         </div>
-        <div class="chord-lyric">
-<pre>
-[Intro]
-Dsus2 | G | Dsus2 | G/A7 | Asus4 |
-
-[Verse]
-D         A         Bm          F#m
-這 天 同 聚 於 主 聖 殿，來 數 算 我 主 恩 典。
-G         A         F#m     Bm
-祂 以 性 命 來 使 我 完 全，來 使 我 兩 眼 重 見 光 線。
-Em7         C         A7
-還 給 我 勇 氣 面 對 挑 戰！
-
-[Chorus]
-        D         A
-恩 典 太 美 麗，無 甚 麼 可 取 替。
-Bm
-唯 求 將 心 全 然 給 主，
-G             D           E           A7
-來 彰 顯 主 愛 多 珍 貴。
-G       A       F#m     Bm
-終 生 愛 神，傾 心 傾 意 愛 別 人，
-G       A7      D
-才 覺 生 命 沒 有 枉 費。
-</pre>
+        <div class="original-ref">經典敬拜詩歌｜原唱：關心妍｜D調版本</div>
+        <div class="chord-hint">🎤 柔和D大調：D, A, Bm, G, Em, F#m</div>
+        <div class="verse-space">
+            <div class="lyric-line"><span class="chord">D</span>　　　 <span class="chord">A/C#</span>　 <span class="chord">Bm</span>　　 <span class="chord">F#m</span></div>
+            <div class="lyric-line">常聽說世界愛沒長久，哪裡會有愛無盡頭？</div>
+            <div class="lyric-line"><span class="chord">G</span>　　 <span class="chord">D/F#</span>　 <span class="chord">Em</span>　　 <span class="chord">A</span></div>
+            <div class="lyric-line">塵俗的愛只在乎曾擁有，一刻燦爛便要走。</div>
         </div>
-        <div class="info-note">🎶 這天同聚於主聖殿｜詩歌本：恩典太美麗</div>
+        <div class="verse-space">
+            <div class="lyric-line"><span class="chord">D</span>　　 <span class="chord">A/C#</span>　 <span class="chord">Bm</span>　　 <span class="chord">F#m</span></div>
+            <div class="lyric-line">而我卻確信愛是恆久，碰到了你已無別求。</div>
+            <div class="lyric-line"><span class="chord">G</span>　　 <span class="chord">D/F#</span>　 <span class="chord">Em</span>　　 <span class="chord">A</span>　　<span class="chord">A7</span></div>
+            <div class="lyric-line">無從解釋不可說明的愛，千秋過後仍長存不朽。</div>
+        </div>
+        <div class="verse-space">
+            <div class="lyric-line"><span class="chord">G</span>　　 <span class="chord">A</span>　　 <span class="chord">F#m</span>　 <span class="chord">Bm</span></div>
+            <div class="lyric-line">誰人受痛苦被懸掛在木頭？至高的愛盡見於刺穿的手。</div>
+            <div class="lyric-line"><span class="chord">G</span>　　 <span class="chord">D/F#</span>　 <span class="chord">Em</span>　　 <span class="chord">A</span></div>
+            <div class="lyric-line">看！血在流反應愛沒保留，持續不死的愛到萬世不休！</div>
+        </div>
+        <div class="verse-space">
+            <div class="lyric-line"><span class="chord">G</span> <span class="chord">A</span> <span class="chord">F#m</span> <span class="chord">Bm</span></div>
+            <div class="lyric-line">惟求奉上生命全歸主所有，要將一切盡獻於我主的手。</div>
+            <div class="lyric-line"><span class="chord">G</span>　 <span class="chord">D/F#</span>　 <span class="chord">Em</span>　　<span class="chord">A</span>　　<span class="chord">D</span></div>
+            <div class="lyric-line">我已決定今生再沒所求，惟望得主稱讚已足夠。</div>
+        </div>
+        <div class="small-note">🎹 D Key 適合溫柔演繹，街頭必備詩歌</div>
     </div>
 
-    <!-- 5. 榮雨降下 -->
-    <div class="slide">
-        <div class="song-header">
-            <span class="song-title">榮雨降下</span>
-            <span class="song-key">Key：G</span>
+    <!-- 回家 (A Key) 原網站 Key G，需升Key為A，原曲G -> A (升一個全音) 保持級數 -->
+    <div class="song-card" id="song-home">
+        <div class="song-title">
+            🏡 回家 <span class="key-badge">Key：A</span>
         </div>
-        <div class="chord-lyric">
-<pre>
-[Intro]
-｜G ｜D ｜C ｜G D ｜
-
-[Verse]
-G           D/F#       C
-看，疾病與苦困，饑荒中瘟疫裡，
-G           D/F#       C
-看，憤怒和懼怕在蔓延。
-Cm          D
-神啊，祢定會憐憫傾聽，
-G           D/F#       C
-屬祢子民同心禱告。
-Am          C/D       D7
-願祢的旨意成就在這裡，榮耀得彰顯。
-
-[Chorus]
-G           D/F#
-求祢垂聽，城市吶喊哭泣，
-Em          G/D
-深陷了絕望陰影，渴望祢憐憫降臨。
-C           Bm        Em
-降下恩雨，轉化一切枯乾貧脊，
-Am          C/D       D7
-求主帶領，從軟弱裡興起。
-
-G           D/F#
-求主細聽，哭泣與吶喊聲，
-Em          G/D
-漆黑絕望的都市，渴望祢憐憫臨在。
-C           Bm        Em
-榮雨降下，枯乾的心在祢恩手中歷變化，
-
-[Outro]
-Am        G/B       C         D         G
-行公義，好憐憫，存謙卑的心，緊跟隨祢。
-</pre>
+        <div class="original-ref">經典回家詩歌｜原調G｜轉A調｜溫暖必唱</div>
+        <div class="chord-hint">🎵 A調和弦：A, E, F#m, D, Bm, C#m</div>
+        <div class="verse-space">
+            <div class="lyric-line"><span class="chord">A</span>　　　 <span class="chord">E/G#</span>　　　 <span class="chord">F#m</span>　　 <span class="chord">Dm</span></div>
+            <div class="lyric-line">步伐是否感覺疲倦了，現實令你感到無奈，</div>
+            <div class="lyric-line"><span class="chord">A</span>　　　　　 <span class="chord">E</span>　　　　 <span class="chord">F#m</span></div>
+            <div class="lyric-line">只懂每日每夜忙碌裡，兜兜轉轉似沒了沒完。</div>
+            <div class="lyric-line"><span class="chord">D</span>　　　 <span class="chord">C#m</span>　　 <span class="chord">Bm</span>　　　　　 <span class="chord">E</span></div>
+            <div class="lyric-line">但願讓你知道神是愛，在路上每一秒同在，</div>
+            <div class="lyric-line"><span class="chord">A</span>　　　 <span class="chord">E/G#</span>　　　 <span class="chord">F#m</span>　　 <span class="chord">Dm</span></div>
+            <div class="lyric-line">可否接受這份純真愛，一生歡欣快樂精彩。</div>
         </div>
-        <div class="info-note">🌧️ 曲詞：劉頌賢｜求祢垂聽，城市吶喊哭泣</div>
+        <div class="verse-space">
+            <div class="lyric-line"><span class="chord">D</span>　　　 <span class="chord">E</span>　　　 <span class="chord">A</span>　　 <span class="chord">E/G#</span>　 <span class="chord">F#m</span> －</div>
+            <div class="lyric-line">回家，將傷痛放下，看透俗世謊話，</div>
+            <div class="lyric-line"><span class="chord">D</span>　　　 <span class="chord">E</span>　　　 <span class="chord">A</span></div>
+            <div class="lyric-line">迷失漆黑中，祂總把你念掛。</div>
+            <div class="lyric-line"><span class="chord">D</span>　　　 <span class="chord">E</span>　　　 <span class="chord">A</span>　　 <span class="chord">E/G#</span>　 <span class="chord">F#m</span> －</div>
+            <div class="lyric-line">回家，即使新世代，全然皆冰冷，</div>
+            <div class="lyric-line"><span class="chord">Bm</span>　　　 <span class="chord">E</span>　　　 <span class="chord">A</span></div>
+            <div class="lyric-line">在這屋裡有主的愛，別再怕。</div>
+        </div>
+        <div class="verse-space">
+            <div class="lyric-line"><span class="chord">Bm</span>　　 <span class="chord">E</span>　　　 <span class="chord">A</span></div>
+            <div class="lyric-line">在這屋裡有主的愛，不要再害怕。</div>
+        </div>
+        <div class="small-note">🧡 轉調提示：原網站G調，彈A調可Capo2 on G調，或直接使用A調和弦</div>
     </div>
 
-    <!-- 6. 迷失、重遇、愛主 -->
-    <div class="slide">
-        <div class="song-header">
-            <span class="song-title">迷失、重遇、愛主</span>
-            <span class="song-key">Key：Dm</span>
+    <!-- 榮雨降下 (G Key) 原網站就是G調，完全符合用戶要求保留G Key -->
+    <div class="song-card" id="song-gloryRain">
+        <div class="song-title">
+            🌧️ 榮雨降下 <span class="key-badge">Key：G</span>
         </div>
-        <div class="chord-lyric">
-<pre>
-[Verse 1]
-Dm                Bb
-迷失我城，如迷羊走失於那昏暗崎嶇路，
-      F           C
-鬧市孤島裡，忙亂掙扎裡，
-      Bb              A
-罪苦困逼裡，失去我心之所向。
-
-[Verse 2]
-Dm                Bb
-喚醒我靈，如迷羊扛於肩膊安放青草地，
-      F           C
-是祢不捨棄，在尋找主愛裡，
-      Bb              A
-話語中百般恩感裡，再重遇我主。
-
-[Chorus]
-Bb      C           Dm      Bb
-尋求祢的面，離開惡行謙卑禱告靠近祢，
-C           F        C
-(我)縱是軟弱，主恩典誇勝，
-Bb          C         Dm
-神話語立定，迷城裡得方向。
-
-Bb      C           Dm      Bb
-尋求祢的面，離開惡行謙卑禱告仰望祢，
-C           F        C
-獻奉我一生，委身作活祭，
-Bb        C       Dm
-靠主更新我靈，盡心性意力愛我恩主。
-
-[Bridge]
-Bb      C       Dm      Bb
-愛裡因主一起靠近，敬拜感恩高聲頌讚，
-Bb      C       Dm      A
-警醒的心彼此結連，回應這世代迷城作光。
-
-[Coda]
-Bb        C       Dm
-十架捨己背負，用愛祝福這城，
-Bb        C       Dm
-將福音宣告，使命願同往。
-</pre>
+        <div class="original-ref">曲詞：劉頌賢｜原調G｜復興轉化詩歌</div>
+        <div class="chord-hint">💧 G調 : G, D/F#, C, Em, Am, D7</div>
+        <div class="verse-space">
+            <div class="lyric-line"><span class="chord">G</span>　　　 <span class="chord">D/F#</span>　　 <span class="chord">C</span></div>
+            <div class="lyric-line">看，疾病與苦困，饑荒中瘟疫裡，</div>
+            <div class="lyric-line"><span class="chord">G</span>　　　 <span class="chord">D/F#</span>　　 <span class="chord">C</span></div>
+            <div class="lyric-line">看，憤怒和懼怕在蔓延。</div>
+            <div class="lyric-line"><span class="chord">Cm</span>　　　 <span class="chord">D</span></div>
+            <div class="lyric-line">神啊，祢定會憐憫傾聽，</div>
+            <div class="lyric-line"><span class="chord">G</span>　　　 <span class="chord">D/F#</span>　　 <span class="chord">C</span></div>
+            <div class="lyric-line">屬祢子民同心禱告。</div>
+            <div class="lyric-line"><span class="chord">Am</span>　　　 <span class="chord">C/D</span>　　 <span class="chord">D7</span></div>
+            <div class="lyric-line">願祢的旨意成就在這裡，榮耀得彰顯。</div>
         </div>
-        <div class="info-note">❤️ 迷失我城，如迷羊走失 | 呼召委身愛主</div>
+        <div class="verse-space">
+            <div class="lyric-line"><span class="chord">G</span>　　　 <span class="chord">D/F#</span></div>
+            <div class="lyric-line">求祢垂聽，城市吶喊哭泣，</div>
+            <div class="lyric-line"><span class="chord">Em</span>　　　 <span class="chord">G/D</span></div>
+            <div class="lyric-line">深陷了絕望陰影，渴望祢憐憫降臨。</div>
+            <div class="lyric-line"><span class="chord">C</span>　　　 <span class="chord">Bm</span>　　 <span class="chord">Em</span></div>
+            <div class="lyric-line">降下恩雨，轉化一切枯乾貧脊，</div>
+            <div class="lyric-line"><span class="chord">Am</span>　　　 <span class="chord">C/D</span>　　 <span class="chord">D7</span></div>
+            <div class="lyric-line">求主帶領，從軟弱裡興起。</div>
+        </div>
+        <div class="verse-space">
+            <div class="lyric-line"><span class="chord">G</span>　　　 <span class="chord">D/F#</span></div>
+            <div class="lyric-line">求主細聽，哭泣與吶喊聲，</div>
+            <div class="lyric-line"><span class="chord">Em</span>　　　 <span class="chord">G/D</span></div>
+            <div class="lyric-line">漆黑絕望的都市，渴望祢憐憫臨在。</div>
+            <div class="lyric-line"><span class="chord">C</span>　　　 <span class="chord">Bm</span>　　 <span class="chord">Em</span></div>
+            <div class="lyric-line">榮雨降下，枯乾的心在祢恩手中歷變化，</div>
+            <div class="lyric-line"><span class="chord">Am</span>　　<span class="chord">G/B</span>　　<span class="chord">C</span>　　<span class="chord">D</span>　　<span class="chord">G</span></div>
+            <div class="lyric-line">行公義，好憐憫，存謙卑的心，緊跟隨祢。</div>
+        </div>
+        <div class="small-note">🌦️ 原曲榮雨降下 (G Key) 適合Band隊與街頭呼求</div>
     </div>
-    <footer>🎹 可複製至 PowerPoint — 每張投影片對應一首詩歌 Chord譜</footer>
+
+    <footer>
+        🌟 和弦譜根據原網站改編，轉調符合指定Key｜手機輕觸自動縮放，街頭Busking 隨時跟唱<br>
+        神是愛｜榮耀歸給神
+    </footer>
 </div>
 </body>
 </html>
