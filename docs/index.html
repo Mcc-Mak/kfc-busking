@@ -62,11 +62,10 @@
             transform: scale(0.96);
         }
 
-        /* 主要內容區 — 預留底部固定日期條的空間 */
         .content-area {
             flex: 1;
             overflow-y: auto;
-            padding: 20px 18px 85px;   /* 底部多留空間，避免被固定條遮擋 */
+            padding: 20px 18px 85px;
             scroll-behavior: smooth;
         }
         .song-panel {
@@ -191,7 +190,6 @@
             border-radius: 40px;
         }
 
-        /* ----- 底部固定日期欄 (Busking 資訊) ----- */
         .busking-footer {
             position: fixed;
             bottom: 0;
@@ -214,12 +212,10 @@
             letter-spacing: 0.3px;
             font-family: inherit;
             pointer-events: auto;
-            /* 配合 iPhone 底部安全區 */
             padding-bottom: max(10px, env(safe-area-inset-bottom));
         }
         .busking-footer .date-icon {
             font-size: 1.1rem;
-            filter: drop-shadow(0 1px 1px rgba(0,0,0,0.1));
         }
         .busking-footer .date-text {
             background: #ffffffb3;
@@ -238,33 +234,14 @@
             font-size: 0.75rem;
             color: #9b6e42;
         }
-        /* 讓底部條不會遮擋任何按鈕或最後的編輯區域 */
-        @media (hover: hover) {
-            .busking-footer:hover {
-                background: rgba(248, 244, 236, 0.98);
-            }
-        }
     </style>
 </head>
 <body>
 
-<div class="topbar" id="tabBar">
-    <!-- 歌曲順序及隱藏/顯示可直接在此增刪按鈕，保留 data-song 對應下方 id -->
-    <button class="tab-button" data-song="song0">🕊️ 安靜</button>
-    <button class="tab-button" data-song="song1">🌟 遇見神</button>
-    <button class="tab-button" data-song="song6">🕯️ 恩典的記號</button>
-    <button class="tab-button" data-song="song2">✝️ 十字架</button>
-    <button class="tab-button" data-song="song3">💖 愛是不保留</button>
-    <button class="tab-button" data-song="song4">🏡 回家</button>
-    <button class="tab-button" data-song="song8">📖 我的名字在祢心上</button>
-    <button class="tab-button" data-song="song5">🌧️ 榮雨降下</button>
-    <button class="tab-button" data-song="song7">🌿 儘管我尚未看見</button>
-    <!-- 未來新增歌曲請比照格式，增加按鈕及下方對應 song-panel，不影響現有內容 -->
-</div>
+<div class="topbar" id="tabBar"></div>
 
 <div class="content-area" id="contentArea">
-
-    <!-- 1. 安靜（皓瑜）Key: C (Capo 0) -->
+    <!-- 1. 安靜 -->
     <div id="song0" class="song-panel">
         <div class="song-card">
             <div class="song-header">
@@ -310,7 +287,7 @@
         </div>
     </div>
 
-    <!-- 2. 遇見神（菜頭）Key: F (Capo 5) -->
+    <!-- 2. 遇見神 -->
     <div id="song1" class="song-panel">
         <div class="song-card">
             <div class="song-header">
@@ -357,7 +334,7 @@
         </div>
     </div>
 
-    <!-- 3. 恩典的記號（皓瑜/Mcc）Key D -->
+    <!-- 3. 恩典的記號 -->
     <div id="song6" class="song-panel">
         <div class="song-card">
             <div class="song-header">
@@ -419,7 +396,7 @@
         </div>
     </div>
 
-    <!-- 4. 十字架（皓瑜）Key: B (Capo 2) -->
+    <!-- 4. 十字架 -->
     <div id="song2" class="song-panel">
         <div class="song-card">
             <div class="song-header">
@@ -461,7 +438,7 @@
         </div>
     </div>
 
-    <!-- 5. 愛是不保留（菜頭）Key: F (Capo 5) -->
+    <!-- 5. 愛是不保留 -->
     <div id="song3" class="song-panel">
         <div class="song-card">
             <div class="song-header">
@@ -503,7 +480,7 @@
         </div>
     </div>
 
-    <!-- 6. 回家（雪清）Key: Bb (Capo 3) -->
+    <!-- 6. 回家 -->
     <div id="song4" class="song-panel">
         <div class="song-card">
             <div class="song-header">
@@ -547,7 +524,7 @@
         </div>
     </div>
 
-    <!-- 7. 我的名字在祢心上（雪清）完整版 F大調 -->
+    <!-- 7. 我的名字在祢心上 (完整更新版) -->
     <div id="song8" class="song-panel">
         <div class="song-card">
             <div class="song-header">
@@ -557,59 +534,49 @@
             </div>
             <div class="original-info">
                 <span>🎵 雪清</span>
-                <span>📖 祢將我銘刻在掌上 | 以賽亞書49:16</span>
+                <span>📖 以賽亞書49:16 | 祢將我銘刻在掌上</span>
             </div>
             <div class="chord-lyric">
                 <pre>
 【Verse 1】
-| F          | C/E        | Dm         | Bb   C    |
-曾 以 為 被 遺 忘  在 人 群 中 跌 跌 撞 撞
-| F          | C/E        | Dm         | Bb       C    |
-但 祢 輕 聲 呼 喚 我  穿 越 曠 野 來 到 我 身 旁
-| Bb         | F/A        | Gm         | C         |
-祢 的 愛 如 星 光 照 亮 漆 黑 的 地 方
-| Dm         | Am         | Bb        | Csus4 C   |
-我 不 再 懼 怕 因 祢 將 我 捧 在 手 掌 上
+| F          | C/E        | Dm         | C          |
+造 物 的 主 ， 祢 一 一 細 察
+| Bb         | C          | F          | F7         |
+祢 照 料 疼 惜 每 一 個
+| Bb         | C/Bb       | Am7        | Dm7        |
+重 投 祢 愛 的 擁 抱 ， 從 來 不 捨 棄 我
+| Bb         | Gm7        | C          | 
+原 是 祢 恩 典 與 愛 捉 緊 我
 
 【Chorus】
-| F          | C/E        | Dm         | Bb   C    |
-我 的 名 字 在 祢 心 上  祢 將 我 銘 刻 在 掌 上
-| F          | C/E        | Dm         | Bb   C    |
-無 論 走 到 何 地 方  祢 的 愛 緊 緊 跟 隨 不 離 開
-| Bb         | F/A        | Gm7        | C         |
-十 架 已 宣 告 我 屬 祢  世 上 沒 有 任 何 能 隔 絕
-| Dm         | Am         | Bb    C    | F         |
-我 的 名 字 在 祢 心 上  永 遠 不 會 被 遺 忘
+| F          | C/E        | Dm7        | C          |
+我 的 名 字 藏 在 祢 心 ， 刻 在 祢 心 上
+| Bb         | F/A        | Gm7        | C          |
+塗 改 不 了 ， 無 人 可 阻 隔 ， 祢 對 我 的 愛
+| F          | C/E        | Dm7        | C          |
+我 的 名 字 存 在 那 刻 ， 已 在 祢 心 上
+| Bb         | F/A        | Gm7        | C          | F        |
+如 此 的 愛 ， 何 等 寶 貴 ， 一 生 不 改 變 ， 單 單 屬 祢
 
-【Verse 2】
-| F          | C/E        | Dm         | Bb   C    |
-每 一 滴 眼 淚  祢 都 裝 在 皮 袋 裡
-| F          | C/E        | Dm         | Bb   C    |
-每 一 次 跌 倒  祢 用 恩 典 將 我 扶 起
-| Bb         | F/A        | Gm         | C         |
-祢 的 應 許 穩 固  如 星 辰 永 不 褪 去
-| Dm         | Am         | Bb        | Csus4 C   |
-我 是 祢 的 珍 寶  安 放 在 祢 永 恆 懷 裡
-
-【Chorus 尾】
-| F          | C/E        | Dm         | Bb   C    |
-我 的 名 字 在 祢 心 上  祢 將 我 銘 刻 在 掌 上
-| F          | C/E        | Dm         | Bb   C    |
-跨 越 死 蔭 幽 谷  祢 的 愛 仍 是 我 力 量
-| Bb         | F/A        | Gm7        | C         |
-今 我 揚 聲 宣 告  祢 是 我 永 遠 的 依 靠
-| Dm    Am   | Bb    C    | F         |
-我 的 名 字 在 祢 心 上  直 到 永 遠 不 動 搖
+【Bridge】
+| F          | C/E        | Dm7        | C          |
+我 愛 慕 祢
+| Bb         | F/A        | Gm7        | C          |
+我 渴 慕 祢
+| F          | C/E        | Dm7        | C          |
+我 愛 慕 祢
+| Bb         | F/A        | Gm7        | C          | F        |
+(我 渴 慕 祢)  我 的 名 字 在 祢 心 上 ， 永 不 被 遺 忘
                 </pre>
             </div>
             <div class="footer-note">
-                <span>✨ 祢將我銘刻在掌上，我的名字在祢心上</span>
-                <span class="small-hint">🎸 F大調 | 溫柔敬拜節奏</span>
+                <span>✨ 我的名字藏在祢心，刻在祢心上</span>
+                <span class="small-hint">🎸 F大調 | 原曲和弦完整收錄</span>
             </div>
         </div>
     </div>
 
-    <!-- 8. 榮雨降下（菜頭）Key: G -->
+    <!-- 8. 榮雨降下 -->
     <div id="song5" class="song-panel">
         <div class="song-card">
             <div class="song-header">
@@ -647,7 +614,7 @@
         </div>
     </div>
 
-    <!-- 9. 儘管我尚未看見（菜頭）Key: E 完整和弦 -->
+    <!-- 9. 儘管我尚未看見 -->
     <div id="song7" class="song-panel">
         <div class="song-card">
             <div class="song-header">
@@ -696,32 +663,71 @@
             </div>
         </div>
     </div>
-
-    <!-- 未來新增歌曲請直接在此增加新的 div id="song9" ... 等，並同步在頂部 tabBar 加入按鈕，系統會自動支援切換 -->
 </div>
 
-<!-- 底部固定日期區塊：顯示街頭 Busking 日期資訊 (可自由修改文字) -->
 <div class="busking-footer">
     <span class="date-icon">📅</span>
-    <span class="date-text">🎶 街頭 Busking · 2026年6月27日 (六) 下午 8:00</span>
-    <span class="location">📍 葵芳｜歡迎 Join Us</span>
+    <span class="date-text">🎶 街頭 Busking · 2026年6月20日 (六) 下午 4:00</span>
+    <span class="location">📍 旺角行人專用區 (近E出口)｜歡迎 Join Us</span>
 </div>
 
 <script>
-    const tabs = document.querySelectorAll('.tab-button');
-    const panels = document.querySelectorAll('.song-panel');
-    
-    function switchToSong(songId) {
-        panels.forEach(panel => {
-            panel.classList.remove('active-panel');
-        });
-        const targetPanel = document.getElementById(songId);
-        if(targetPanel) {
-            targetPanel.classList.add('active-panel');
+    // ========== 全局配置物件 ==========
+    // 透過修改這個陣列，您可以控制 tabBar 上歌曲的顯示、隱藏與順序。
+    window.songTabsConfig = [
+        { id: "song0", label: "🕊️ 安靜", visible: true },
+        { id: "song1", label: "🌟 遇見神", visible: true },
+        { id: "song6", label: "🕯️ 恩典的記號", visible: true },
+        { id: "song2", label: "✝️ 十字架", visible: true },
+        { id: "song3", label: "💖 愛是不保留", visible: true },
+        { id: "song4", label: "🏡 回家", visible: true },
+        { id: "song8", label: "📖 我的名字在祢心上", visible: true },
+        { id: "song5", label: "🌧️ 榮雨降下", visible: true },
+        { id: "song7", label: "🌿 儘管我尚未看見", visible: true }
+    ];
+
+    function buildTabBar() {
+        const tabBar = document.getElementById('tabBar');
+        if (!tabBar) return;
+        tabBar.innerHTML = '';
+        const visibleTabs = window.songTabsConfig.filter(item => item.visible === true);
+        for (let item of visibleTabs) {
+            const btn = document.createElement('button');
+            btn.className = 'tab-button';
+            btn.setAttribute('data-song', item.id);
+            btn.textContent = item.label;
+            btn.addEventListener('click', (e) => {
+                const songId = btn.getAttribute('data-song');
+                if (songId) {
+                    switchToSong(songId);
+                    btn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+                }
+            });
+            tabBar.appendChild(btn);
         }
-        tabs.forEach(btn => {
-            const songVal = btn.getAttribute('data-song');
-            if(songVal === songId) {
+        const currentActivePanel = document.querySelector('.song-panel.active-panel');
+        if (currentActivePanel && document.querySelector(`.tab-button[data-song="${currentActivePanel.id}"]`)) {
+            document.querySelectorAll('.tab-button').forEach(btn => {
+                if (btn.getAttribute('data-song') === currentActivePanel.id) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+        } else {
+            if (visibleTabs.length > 0) {
+                switchToSong(visibleTabs[0].id);
+            }
+        }
+    }
+
+    function switchToSong(songId) {
+        const panels = document.querySelectorAll('.song-panel');
+        panels.forEach(panel => panel.classList.remove('active-panel'));
+        const targetPanel = document.getElementById(songId);
+        if (targetPanel) targetPanel.classList.add('active-panel');
+        document.querySelectorAll('.tab-button').forEach(btn => {
+            if (btn.getAttribute('data-song') === songId) {
                 btn.classList.add('active');
             } else {
                 btn.classList.remove('active');
@@ -729,22 +735,26 @@
         });
     }
 
-    tabs.forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            const songId = btn.getAttribute('data-song');
-            if(songId) {
-                switchToSong(songId);
-                btn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    window.refreshTabBar = function() {
+        buildTabBar();
+        const visibleIds = window.songTabsConfig.filter(item => item.visible).map(item => item.id);
+        if (visibleIds.length > 0) {
+            const currentActive = document.querySelector('.song-panel.active-panel');
+            if (!currentActive || !visibleIds.includes(currentActive.id)) {
+                switchToSong(visibleIds[0]);
+            } else {
+                switchToSong(currentActive.id);
             }
-        });
-    });
+        }
+    };
 
-    // 預設顯示第一首：安靜
-    switchToSong('song0');
-    
-    window.addEventListener('load', () => {
+    window.addEventListener('DOMContentLoaded', () => {
+        buildTabBar();
+        const visibleFirst = window.songTabsConfig.find(item => item.visible === true);
+        if (visibleFirst && !document.querySelector('.song-panel.active-panel')) {
+            switchToSong(visibleFirst.id);
+        }
         document.body.style.overflow = 'hidden';
-        // 確保底部資訊條不會導致頁面滾動錯位
     });
 </script>
 </body>
