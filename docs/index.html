@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes" />
     <title>KFC 街頭 Busking · 詩歌和弦本</title>
     <style>
+        /* ===== 全局重置 ===== */
         * {
             margin: 0;
             padding: 0;
@@ -21,6 +22,7 @@
             overflow: hidden;
         }
 
+        /* ===== 頂部標籤欄 ===== */
         .topbar {
             background: #ffffffea;
             backdrop-filter: blur(4px);
@@ -32,12 +34,13 @@
             gap: 6px;
             scrollbar-width: thin;
             -webkit-overflow-scrolling: touch;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
             z-index: 10;
         }
         .topbar::-webkit-scrollbar {
             height: 3px;
         }
+
         .tab-button {
             background: transparent;
             border: none;
@@ -62,12 +65,14 @@
             transform: scale(0.96);
         }
 
+        /* ===== 內容區域 ===== */
         .content-area {
             flex: 1;
             overflow-y: auto;
             padding: 20px 18px 85px;
             scroll-behavior: smooth;
         }
+
         .song-panel {
             display: none;
             max-width: 780px;
@@ -77,11 +82,19 @@
         .song-panel.active-panel {
             display: block;
         }
+
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(6px);}
-            to { opacity: 1; transform: translateY(0);}
+            from {
+                opacity: 0;
+                transform: translateY(6px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
+        /* ===== 歌曲卡片 ===== */
         .song-card {
             background: #ffffff;
             border-radius: 36px;
@@ -89,6 +102,7 @@
             padding: 26px 22px 32px;
             border: 1px solid #f0e5d6;
         }
+
         .song-header {
             display: flex;
             justify-content: space-between;
@@ -120,6 +134,7 @@
             font-weight: 600;
             color: #b85c1a;
         }
+
         .original-info {
             font-size: 0.75rem;
             color: #b5926e;
@@ -129,6 +144,7 @@
             gap: 16px;
             flex-wrap: wrap;
         }
+
         .chord-lyric {
             font-family: 'Courier New', 'SF Mono', 'Fira Code', monospace;
             font-size: 0.92rem;
@@ -148,6 +164,7 @@
             margin: 0;
             font-size: 0.92rem;
         }
+
         .footer-note {
             font-size: 0.7rem;
             color: #c0a77c;
@@ -159,29 +176,7 @@
             justify-content: space-between;
             flex-wrap: wrap;
         }
-        @media (max-width: 560px) {
-            .topbar {
-                padding: 8px 12px 0;
-            }
-            .tab-button {
-                padding: 10px 14px;
-                font-size: 0.85rem;
-            }
-            .song-card {
-                padding: 20px 16px 26px;
-            }
-            .song-title {
-                font-size: 1.6rem;
-            }
-            .chord-lyric {
-                font-size: 0.82rem;
-                padding: 16px 12px;
-                line-height: 1.75;
-            }
-            .content-area {
-                padding-bottom: 80px;
-            }
-        }
+
         .small-hint {
             font-size: 0.7rem;
             background: #f6f0e6;
@@ -190,6 +185,7 @@
             border-radius: 40px;
         }
 
+        /* ===== 底部資訊欄 ===== */
         .busking-footer {
             position: fixed;
             bottom: 0;
@@ -234,531 +230,575 @@
             font-size: 0.75rem;
             color: #9b6e42;
         }
+
+        /* ===== 響應式 ===== */
+        @media (max-width: 560px) {
+            .topbar {
+                padding: 8px 12px 0;
+            }
+            .tab-button {
+                padding: 10px 14px;
+                font-size: 0.85rem;
+            }
+            .song-card {
+                padding: 20px 16px 26px;
+            }
+            .song-title {
+                font-size: 1.6rem;
+            }
+            .chord-lyric {
+                font-size: 0.82rem;
+                padding: 16px 12px;
+                line-height: 1.75;
+            }
+            .content-area {
+                padding-bottom: 80px;
+            }
+        }
     </style>
 </head>
 <body>
 
-<div class="topbar" id="tabBar"></div>
+    <!-- ===== 頂部標籤欄 ===== -->
+    <div class="topbar" id="tabBar"></div>
 
-<div class="content-area" id="contentArea">
-    <!-- 1. 安靜 -->
-    <div id="song0" class="song-panel">
-        <div class="song-card">
-            <div class="song-header">
-                <span class="song-title">安靜</span>
-                <span class="key-badge">Key：C</span>
-                <span class="capo-badge">Capo 0</span>
-            </div>
-            <div class="original-info">
-                <span>🎵 皓瑜/菜頭</span>
-                <span>🕊️ 我要安靜知祢是神 E4</span>
-            </div>
-            <div class="chord-lyric">
-                <pre>
-【Verse 1】
-| C  G  | Am   | F    D7   | G    |
-藏 我 在　翅 膀 蔭　　 下
-| C  G  | Am   | F    D7   | G    |
-遮 蓋 我　在 你 大 能 手 中
+    <!-- ===== 內容區域 ===== -->
+    <div class="content-area" id="contentArea">
 
-【Chorus】
-| F    G    | C         | F    G    | Am        |
-當 大 海 翻 騰　波 濤 洶 湧 我 與 祢 展 翅　暴 風 上 空
-| F    G    | C    Am   | F    G    | C         |
-父 祢 仍 作 王　在 洪 水 中 我 要 安 靜　知 祢 是 神
+        <!-- 1. 安靜 -->
+        <div id="song0" class="song-panel">
+            <div class="song-card">
+                <div class="song-header">
+                    <span class="song-title">安靜</span>
+                    <span class="key-badge">Key：C</span>
+                    <span class="capo-badge">Capo 0</span>
+                </div>
+                <div class="original-info">
+                    <span>🎵 皓瑜/菜頭</span>
+                    <span>🕊️ 我要安靜知祢是神 E4</span>
+                </div>
+                <div class="chord-lyric">
+                    <pre>
+                        【Verse 1】
+                        | C  G  | Am   | F    D7   | G    |
+                        藏 我 在　翅 膀 蔭　　 下
+                        | C  G  | Am   | F    D7   | G    |
+                        遮 蓋 我　在 你 大 能 手 中
 
-【Verse 2】
-| C  G  | Am   | F    D7   | G    |
-我 靈 安 息　在 基 督 裏
-| C  G  | Am   | F    D7   | G    |
-祢 大 能　使 我 安 然 信 靠
+                        【Chorus】
+                        | F    G    | C         | F    G    | Am        |
+                        當 大 海 翻 騰　波 濤 洶 湧 我 與 祢 展 翅　暴 風 上 空
+                        | F    G    | C    Am   | F    G    | C         |
+                        父 祢 仍 作 王　在 洪 水 中 我 要 安 靜　知 祢 是 神
 
-【Chorus】
-| F    G    | C         | F    G    | Am        |
-當 大 海 翻 騰　波 濤 洶 湧 我 與 祢 展 翅　暴 風 上 空
-| F    G    | C    Am   | F    G    | C         |
-父 祢 仍 作 王　在 洪 水 中 我 要 安 靜　知 祢 是 神
-                </pre>
-            </div>
-            <div class="footer-note">
-                <span>📖 藏我在翅膀蔭下</span>
-                <span class="small-hint">🎸 C大調 | 原曲和弦不變</span>
+                        【Verse 2】
+                        | C  G  | Am   | F    D7   | G    |
+                        我 靈 安 息　在 基 督 裏
+                        | C  G  | Am   | F    D7   | G    |
+                        祢 大 能　使 我 安 然 信 靠
+
+                        【Chorus】
+                        | F    G    | C         | F    G    | Am        |
+                        當 大 海 翻 騰　波 濤 洶 湧 我 與 祢 展 翅　暴 風 上 空
+                        | F    G    | C    Am   | F    G    | C         |
+                        父 祢 仍 作 王　在 洪 水 中 我 要 安 靜　知 祢 是 神
+                    </pre>
+                </div>
+                <div class="footer-note">
+                    <span>📖 藏我在翅膀蔭下</span>
+                    <span class="small-hint">🎸 C大調 | 原曲和弦不變</span>
+                </div>
             </div>
         </div>
-    </div>
 
-    <!-- 2. 遇見神 -->
-    <div id="song1" class="song-panel">
-        <div class="song-card">
-            <div class="song-header">
-                <span class="song-title">遇見神</span>
-                <span class="key-badge">Key：F</span>
-                <span class="capo-badge">Capo 5</span>
-            </div>
-            <div class="original-info">
-                <span>🎵 菜頭</span>
-                <span>🌟 人能遇見神是福氣 C4</span>
-            </div>
-            <div class="chord-lyric">
-                <pre>
-【Verse】
-| C      G/B    | Am     Em     | F      C      | F      G      |
-看 天 邊 飄 過 雲 海　 告 訴 世 界 幻 變 常 在  從 來 人 在 月 缺 下 盼 月 圓
-| C      G/B    | Am     Em     | F      C      | Bb     G      |
-天 天 總 有 上 演　 告 訴 你 我 動 人 故 事　 動 人 情 節 留 下 伏 線　 細 心 飾 演
+        <!-- 2. 遇見神 -->
+        <div id="song1" class="song-panel">
+            <div class="song-card">
+                <div class="song-header">
+                    <span class="song-title">遇見神</span>
+                    <span class="key-badge">Key：F</span>
+                    <span class="capo-badge">Capo 5</span>
+                </div>
+                <div class="original-info">
+                    <span>🎵 菜頭</span>
+                    <span>🌟 人能遇見神是福氣 C4</span>
+                </div>
+                <div class="chord-lyric">
+                    <pre>
+                        【Verse】
+                        | C      G/B    | Am     Em     | F      C      | F      G      |
+                        看 天 邊 飄 過 雲 海　 告 訴 世 界 幻 變 常 在  從 來 人 在 月 缺 下 盼 月 圓
+                        | C      G/B    | Am     Em     | F      C      | Bb     G      |
+                        天 天 總 有 上 演　 告 訴 你 我 動 人 故 事　 動 人 情 節 留 下 伏 線　 細 心 飾 演
 
-【Chorus】
-| C      G/B    | Am     G      | F      C      | F      G      |
-如 何 人 心 粉 碎 像 微 塵　 無 言 流 淚　 滿 身 抖 震 如何遇見神　被擁抱　再得起身
-| C      G/B    | Am     Em     | F      C      | F      G      | C    |
-明 明 平 安 彷 彿 天 邊 遠　 流 連 遊 盪　 暗 失 方 寸　 然 而 遇 見 神　 被 指 引　 再 生 精 采 心 內 滲
+                        【Chorus】
+                        | C      G/B    | Am     G      | F      C      | F      G      |
+                        如 何 人 心 粉 碎 像 微 塵　 無 言 流 淚　 滿 身 抖 震 如何遇見神　被擁抱　再得起身
+                        | C      G/B    | Am     Em     | F      C      | F      G      | C    |
+                        明 明 平 安 彷 彿 天 邊 遠　 流 連 遊 盪　 暗 失 方 寸　 然 而 遇 見 神　 被 指 引　 再 生 精 采 心 內 滲
 
-【Bridge】
-| F      F/E    | Dm     C      | Bb            | G             |
-只 因 有 你　　 今 天 有 你　 了 不 起
+                        【Bridge】
+                        | F      F/E    | Dm     C      | Bb            | G             |
+                        只 因 有 你　　 今 天 有 你　 了 不 起
 
-【Chorus】
-| C      G/B    | Am     G      | F      C      | F      G      |
-誰 無 遐 想 一 生 精 采 佳 美　 由 誰 來 導　 演 出 好 戲　人能遇見神　是福氣　最終高飛
-| C      G/B    | Am     G      | F      C      | F      G      | Am    |
-從 來 難 數 高 低 多 少 次　 何 時 成 就　 那 天 失 意　 前 途 幻 變 時　 路 雖 遠　 有 這 福 氣 心 內 暖
+                        【Chorus】
+                        | C      G/B    | Am     G      | F      C      | F      G      |
+                        誰 無 遐 想 一 生 精 采 佳 美　 由 誰 來 導　 演 出 好 戲　人能遇見神　是福氣　最終高飛
+                        | C      G/B    | Am     G      | F      C      | F      G      | Am    |
+                        從 來 難 數 高 低 多 少 次　 何 時 成 就　 那 天 失 意　 前 途 幻 變 時　 路 雖 遠　 有 這 福 氣 心 內 暖
 
-【Outro】
-| F      | Dm     | G      |  C      |
-                </pre>
-            </div>
-            <div class="footer-note">
-                <span>📖 看天邊飄過雲海</span>
-                <span class="small-hint">🎸 F大調 | Capo 5 彈C調指法</span>
+                        【Outro】
+                        | F      | Dm     | G      |  C      |
+                    </pre>
+                </div>
+                <div class="footer-note">
+                    <span>📖 看天邊飄過雲海</span>
+                    <span class="small-hint">🎸 F大調 | Capo 5 彈C調指法</span>
+                </div>
             </div>
         </div>
-    </div>
 
-    <!-- 3. 恩典的記號 -->
-    <div id="song6" class="song-panel">
-        <div class="song-card">
-            <div class="song-header">
-                <span class="song-title">恩典的記號</span>
-                <span class="key-badge">Key：D</span>
-                <span class="capo-badge">Capo 0</span>
-            </div>
-            <div class="original-info">
-                <span>🎵 皓瑜/Mcc</span>
-                <span>🕯️ 走過的路有歡笑有淚水</span>
-            </div>
-            <div class="chord-lyric">
-                <pre>
-【Verse 1】
-| D          | G          |
-站 在 (大) 海 邊，才 發 現 自 己 是 (多) 渺 小。
-| D          | Asus4 - A  D/F# |
-登 上 (最) 高 山，才 發 現 天 有 多 (高)。
-| G          | D   A/C#   Bm - |
-浩 瀚 的 (宇) 宙 中，我 真 (的) 微 不 足 道。
-| Em    E    | Asus4  A    |
-像 (灰) 塵，消 失 也 沒 人 知 (道)。
+        <!-- 3. 恩典的記號 -->
+        <div id="song6" class="song-panel">
+            <div class="song-card">
+                <div class="song-header">
+                    <span class="song-title">恩典的記號</span>
+                    <span class="key-badge">Key：D</span>
+                    <span class="capo-badge">Capo 0</span>
+                </div>
+                <div class="original-info">
+                    <span>🎵 皓瑜/Mcc</span>
+                    <span>🕯️ 走過的路有歡笑有淚水</span>
+                </div>
+                <div class="chord-lyric">
+                    <pre>
+                        【Verse 1】
+                        | D          | G          |
+                        站 在 (大) 海 邊，才 發 現 自 己 是 (多) 渺 小。
+                        | D          | Asus4 - A  D/F# |
+                        登 上 (最) 高 山，才 發 現 天 有 多 (高)。
+                        | G          | D   A/C#   Bm - |
+                        浩 瀚 的 (宇) 宙 中，我 真 (的) 微 不 足 道。
+                        | Em    E    | Asus4  A    |
+                        像 (灰) 塵，消 失 也 沒 人 知 (道)。
 
-【Verse 2】
-| D          | G          |
-夜 空 (的) 星 星，彷 彿 在 對 著 我 (微) 微 笑。
-| D          | Asus4 - A  D/F# |
-輕 聲 (告) 訴 我，一 切 祂 都 看 見 (了)。
-| G          | D   A/C#   Bm - |
-我 所 有 (掙) 扎，所 有 (軟) 弱 和 跌 倒。
-| Em - Asus4 A | Dsus4  D   |
-將 (成) 為 主 恩 典 的 記 (號)。
+                        【Verse 2】
+                        | D          | G          |
+                        夜 空 (的) 星 星，彷 彿 在 對 著 我 (微) 微 笑。
+                        | D          | Asus4 - A  D/F# |
+                        輕 聲 (告) 訴 我，一 切 祂 都 看 見 (了)。
+                        | G          | D   A/C#   Bm - |
+                        我 所 有 (掙) 扎，所 有 (軟) 弱 和 跌 倒。
+                        | Em - Asus4 A | Dsus4  D   |
+                        將 (成) 為 主 恩 典 的 記 (號)。
 
-【Chorus 1】
-| G - - A    | D          |
-當 我 呼 (求)，耶 穌 聽 見 我 的 (禱) 告。
-| G          | D  - A D/F#  |
-千 萬 人 (中)，祂 竟 關 心 我 的 (需) 要。
-| G          | D  A/C#  Bm  -  |
-走 過 的 (路)，有 歡 (笑) 有 淚 水。
-| Esus4  E/G#  | Asus4 - A  D/F#  |
-都 (留) 下 主 恩 典 的 記 (號)。
+                        【Chorus 1】
+                        | G - - A    | D          |
+                        當 我 呼 (求)，耶 穌 聽 見 我 的 (禱) 告。
+                        | G          | D  - A D/F#  |
+                        千 萬 人 (中)，祂 竟 關 心 我 的 (需) 要。
+                        | G          | D  A/C#  Bm  -  |
+                        走 過 的 (路)，有 歡 (笑) 有 淚 水。
+                        | Esus4  E/G#  | Asus4 - A  D/F#  |
+                        都 (留) 下 主 恩 典 的 記 (號)。
 
-【Chorus 2】
-| G - - A    | D          |
-在 風 雨 (中)，耶 穌 將 我 緊 緊 (擁) 抱。
-| G          | D - A D/F#  |
-我 深 知 (道)，祂 是 我 永 遠 的 (依) 靠。
-| G          | D   A/C#   Bm - |
-走 過 (的) 路，有 歡 (笑) 有 淚 水。
-| Em    A    | D          |
-將 (成) 為 主 恩 典 的 記 (號)。
-                </pre>
-            </div>
-            <div class="footer-note">
-                <span>🎸 D大調 | 恩典之路，每一步記號</span>
-                <span class="small-hint">📖 完整和弦不拆分</span>
+                        【Chorus 2】
+                        | G - - A    | D          |
+                        在 風 雨 (中)，耶 穌 將 我 緊 緊 (擁) 抱。
+                        | G          | D - A D/F#  |
+                        我 深 知 (道)，祂 是 我 永 遠 的 (依) 靠。
+                        | G          | D   A/C#   Bm - |
+                        走 過 (的) 路，有 歡 (笑) 有 淚 水。
+                        | Em    A    | D          |
+                        將 (成) 為 主 恩 典 的 記 (號)。
+                    </pre>
+                </div>
+                <div class="footer-note">
+                    <span>🎸 D大調 | 恩典之路，每一步記號</span>
+                    <span class="small-hint">📖 完整和弦不拆分</span>
+                </div>
             </div>
         </div>
-    </div>
 
-    <!-- 4. 十字架 -->
-    <div id="song2" class="song-panel">
-        <div class="song-card">
-            <div class="song-header">
-                <span class="song-title">十字架</span>
-                <span class="key-badge">Key：B</span>
-                <span class="capo-badge">Capo 2</span>
-            </div>
-            <div class="original-info">
-                <span>🎵 皓瑜</span>
-                <span>✝️ 這恩典記號，主你已顛覆世界</span>
-            </div>
-            <div class="chord-lyric">
-                <pre>
-【Verse 1】
-| A    Bm7   | Esus  E     F#m7  |
-十 字 架， 極 殘 忍 刑 罰，
-| D    Bm7   | D     E     |
-充 滿 了 羞 恥， 還 更 羞 恥，
-| A    Bm7   | Esus  E     F#m7  | Bm7   F     | A     F    |
-但 是 你， 把 冠 冕 擲 下， 釘 上 了， 一 切 轉 化。
+        <!-- 4. 十字架 -->
+        <div id="song2" class="song-panel">
+            <div class="song-card">
+                <div class="song-header">
+                    <span class="song-title">十字架</span>
+                    <span class="key-badge">Key：B</span>
+                    <span class="capo-badge">Capo 2</span>
+                </div>
+                <div class="original-info">
+                    <span>🎵 皓瑜</span>
+                    <span>✝️ 這恩典記號，主你已顛覆世界</span>
+                </div>
+                <div class="chord-lyric">
+                    <pre>
+                        【Verse 1】
+                        | A    Bm7   | Esus  E     F#m7  |
+                        十 字 架， 極 殘 忍 刑 罰，
+                        | D    Bm7   | D     E     |
+                        充 滿 了 羞 恥， 還 更 羞 恥，
+                        | A    Bm7   | Esus  E     F#m7  | Bm7   F     | A     F    |
+                        但 是 你， 把 冠 冕 擲 下， 釘 上 了， 一 切 轉 化。
 
-【Verse 2】
-| A    Bm7   | E     A     | Bm7   | D     E     |
-十 字 架， 現 何 等 榮 耀， 寶血已傾注，除去羞恥， 
-| A    Bm7   | E     F#m7  | D     E     | A      | 
-十 字 架， 這 恩 典 記 號， 主 你 已 顛 覆 世 界。
+                        【Verse 2】
+                        | A    Bm7   | E     A     | Bm7   | D     E     |
+                        十 字 架， 現 何 等 榮 耀， 寶血已傾注，除去羞恥，
+                        | A    Bm7   | E     F#m7  | D     E     | A      |
+                        十 字 架， 這 恩 典 記 號， 主 你 已 顛 覆 世 界。
 
-【Chorus】
-| D    E     | A     | D    E     | A     |
-你 不 願， 有 一 個 沉 淪，
-| D    E     | C#    F#m   | Bm7   F     | A     |
-這 今 後， 每 一 步， 全 是 恩 典 之 路， 重 拾 勇 氣， 背 上 十 架。
-                </pre>
-            </div>
-            <div class="footer-note">
-                <span>✝️ 十字架，現何等榮耀</span>
-                <span class="small-hint">🎸 B大調 | Capo 2 彈A調指法</span>
+                        【Chorus】
+                        | D    E     | A     | D    E     | A     |
+                        你 不 願， 有 一 個 沉 淪，
+                        | D    E     | C#    F#m   | Bm7   F     | A     |
+                        這 今 後， 每 一 步， 全 是 恩 典 之 路， 重 拾 勇 氣， 背 上 十 架。
+                    </pre>
+                </div>
+                <div class="footer-note">
+                    <span>✝️ 十字架，現何等榮耀</span>
+                    <span class="small-hint">🎸 B大調 | Capo 2 彈A調指法</span>
+                </div>
             </div>
         </div>
-    </div>
 
-    <!-- 5. 愛是不保留 -->
-    <div id="song3" class="song-panel">
-        <div class="song-card">
-            <div class="song-header">
-                <span class="song-title">愛是不保留</span>
-                <span class="key-badge">Key：F</span>
-                <span class="capo-badge">Capo 5</span>
-            </div>
-            <div class="original-info">
-                <span>🎵 菜頭</span>
-                <span>💖 持續不死的愛到萬世不休</span>
-            </div>
-            <div class="chord-lyric">
-                <pre>
-【Verse】
-| C    | Em   | F     | Gsus4 G     |
-常 聽 說 世 界 愛 沒 長 久 哪裡會有愛無盡頭
-| F    G    | E7    Am    | F     D7   | G     |
-塵 俗 的 愛 只 在 乎 曾 擁 有 一刻燦爛便要走
-| C    | Em   | F     | G     |
-而 我 卻 確 信 愛 是 恆 久 碰到了你已無別求
-| F    G    | E7    Am    | F     D7    | Gsus4 G    |
-無 從 解 釋 不 可 說 明 的 愛 千秋過後仍長存不朽
+        <!-- 5. 回家 -->
+        <div id="song4" class="song-panel">
+            <div class="song-card">
+                <div class="song-header">
+                    <span class="song-title">回家</span>
+                    <span class="key-badge">Key：Bb</span>
+                    <span class="capo-badge">Capo 3</span>
+                </div>
+                <div class="original-info">
+                    <span>🎵 雪清</span>
+                    <span>🏡 在這屋裡，有主的愛，別再怕</span>
+                </div>
+                <div class="chord-lyric">
+                    <pre>
+                        【Verse】
+                        | G      D/F#   | Em     Cm     | G      | D      | Em     |
+                        步伐是否感覺疲倦了？ 現實令你感到無奈...
+                        | C      Bm     | Am     | D      |
+                        只懂每日每夜忙碌裡，兜兜轉轉似沒了沒完。
+                        | G      D/F#   | Em     Cm     | G      | D      | Em     |
+                        但願讓你知道神是愛，在路上每一秒同在，
+                        | C      Bm     | Am     | D      |
+                        可否接受這份純真愛，一生歡欣快樂精彩。
 
-【Chorus】
-| C    G    | Am           | F     C     | D     G7   |
-誰 人 受 痛 苦 被 懸 掛 在 木 頭 至高的愛盡見於刺穿的手
-| F    G    | Em    Am    | F     D     | Gsus4 G    |
-看 血 在 流 反 映 愛 沒 保 留 持續不死的愛到萬世不休
-| C    G    | Am           | F     C     | D     G7   |
-惟 求 奉 上 生 命 全 歸 主 所 有 要將一切盡獻於我主的手
-| F    G    | Em    Am    | Dm    F     G     | C    |
-我 已 決 定 今 生 再 沒 所 求 惟望得主稱讚已足夠
-                </pre>
-            </div>
-            <div class="footer-note">
-                <span>💖 誰人受痛苦被懸掛在木頭</span>
-                <span class="small-hint">🎸 F大調 | Capo 5 彈C調指法</span>
+                        【Chorus】
+                        | C      D      | G      D/F#   Em     |
+                        回家，將傷痛放下，看透俗世謊話，
+                        | C      D      | G      |
+                        迷失漆黑中，祂總把你念掛。
+                        | C      D      | G      D/F#   Em     |
+                        回家，即使新世代全然皆冰冷，
+                        | Am     D      | G      |
+                        在這屋裡，有主的愛，別再怕。
+                        | Am     D      | D      | G       |
+                        (在這屋裡有主的愛，不要害怕。)
+                    </pre>
+                </div>
+                <div class="footer-note">
+                    <span>🏡 回家，將傷痛放下</span>
+                    <span class="small-hint">🎸 Bb大調 | Capo 3 彈G調指法</span>
+                </div>
             </div>
         </div>
-    </div>
 
-    <!-- 6. 回家 -->
-    <div id="song4" class="song-panel">
-        <div class="song-card">
-            <div class="song-header">
-                <span class="song-title">回家</span>
-                <span class="key-badge">Key：Bb</span>
-                <span class="capo-badge">Capo 3</span>
-            </div>
-            <div class="original-info">
-                <span>🎵 雪清</span>
-                <span>🏡 在這屋裡，有主的愛，別再怕</span>
-            </div>
-            <div class="chord-lyric">
-                <pre>
-【Verse】
-| G      D/F#   | Em     Cm     | G      | D      | Em     |
-步伐是否感覺疲倦了？ 現實令你感到無奈...
-| C      Bm     | Am     | D      |
-只懂每日每夜忙碌裡，兜兜轉轉似沒了沒完。
-| G      D/F#   | Em     Cm     | G      | D      | Em     |
-但願讓你知道神是愛，在路上每一秒同在，
-| C      Bm     | Am     | D      |
-可否接受這份純真愛，一生歡欣快樂精彩。
+        <!-- 6. 我的名字在祢心上 -->
+        <div id="song8" class="song-panel">
+            <div class="song-card">
+                <div class="song-header">
+                    <span class="song-title">我的名字在祢心上</span>
+                    <span class="key-badge">Key：F</span>
+                    <span class="capo-badge">Capo 0</span>
+                </div>
+                <div class="original-info">
+                    <span>🎵 雪清</span>
+                    <span>📖 以賽亞書49:16 | 祢將我銘刻在掌上</span>
+                </div>
+                <div class="chord-lyric">
+                    <pre>
+                        【Verse 1】
+                        | F    C/E    | Dm    C    |
+                        造 物 的 主 ， 祢 一 一 細 察
+                        | Bb    C    | F    F7    |
+                        祢 照 料 疼 惜 每 一 個
+                        | Bb    C/Bb    | Am7    Dm7    |
+                        重 投 祢 愛 的 擁 抱 ， 從 來 不 捨 棄 我
+                        | Gm7        | Csus4    C      |
+                        原 是 祢 恩 典 與 愛 捉 緊 我
 
-【Chorus】
-| C      D      | G      D/F#   Em     |
-回家，將傷痛放下，看透俗世謊話，
-| C      D      | G      |
-迷失漆黑中，祂總把你念掛。
-| C      D      | G      D/F#   Em     |
-回家，即使新世代全然皆冰冷，
-| Am     D      | G      |
-在這屋裡，有主的愛，別再怕。
-| Am     D      | D      | G       |
-(在這屋裡有主的愛，不要害怕。)
-                </pre>
-            </div>
-            <div class="footer-note">
-                <span>🏡 回家，將傷痛放下</span>
-                <span class="small-hint">🎸 Bb大調 | Capo 3 彈G調指法</span>
+                        【Chorus】
+                        | F    C/E    | Dm7    C    |
+                        我 的 名 字 藏 在 祢 心 ， 刻 在 祢 心 上
+                        | Bb    F/A    | Gm7    Csus4    |
+                        塗 改 不 了 ， 無 人 可 阻 隔 ， 祢 對 我 的 愛
+                        | F    C/E    | Dm7    C    |
+                        我 的 名 字 存 在 那 刻 ， 已 在 祢 心 上
+                        | Bb    F/A    | Gm7    Csus4    | F        |
+                        如 此 的 愛 ， 何 等 寶 貴 ， 一 生 不 改 變 ， 單 單 屬 祢
+
+                        【Bridge】
+                        | F    C/E    | Dm7    C    |
+                        我 愛 慕 祢
+                        | Bb    F/A    | Gm7    Csus4    |
+                        我 渴 慕 祢
+                        | F    C/E    | Dm7    C    |
+                        我 愛 慕 祢
+                        | Bb    F/A    | Gm7    Csus4    | F         |
+                        一 生 愛 你 ， 今 單 單 屬 你 。
+                    </pre>
+                </div>
+                <div class="footer-note">
+                    <span>✨ 我的名字藏在祢心，刻在祢心上</span>
+                    <span class="small-hint">🎸 F大調 | 原曲和弦完整收錄</span>
+                </div>
             </div>
         </div>
-    </div>
 
-    <!-- 7. 我的名字在祢心上 (完整更新版) -->
-    <div id="song8" class="song-panel">
-        <div class="song-card">
-            <div class="song-header">
-                <span class="song-title">我的名字在祢心上</span>
-                <span class="key-badge">Key：F</span>
-                <span class="capo-badge">Capo 0</span>
-            </div>
-            <div class="original-info">
-                <span>🎵 雪清</span>
-                <span>📖 以賽亞書49:16 | 祢將我銘刻在掌上</span>
-            </div>
-            <div class="chord-lyric">
-                <pre>
-【Verse 1】
-| F    C/E    | Dm    C    |
-造 物 的 主 ， 祢 一 一 細 察
-| Bb    C    | F    F7    |
-祢 照 料 疼 惜 每 一 個
-| Bb    C/Bb    | Am7    Dm7    |
-重 投 祢 愛 的 擁 抱 ， 從 來 不 捨 棄 我
-| Gm7        | Csus4    C      | 
-原 是 祢 恩 典 與 愛 捉 緊 我
+        <!-- 7. 愛是不保留 -->
+        <div id="song3" class="song-panel">
+            <div class="song-card">
+                <div class="song-header">
+                    <span class="song-title">愛是不保留</span>
+                    <span class="key-badge">Key：F</span>
+                    <span class="capo-badge">Capo 5</span>
+                </div>
+                <div class="original-info">
+                    <span>🎵 菜頭</span>
+                    <span>💖 持續不死的愛到萬世不休</span>
+                </div>
+                <div class="chord-lyric">
+                    <pre>
+                        【Verse】
+                        | C    | Em   | F     | Gsus4 G     |
+                        常 聽 說 世 界 愛 沒 長 久 哪裡會有愛無盡頭
+                        | F    G    | E7    Am    | F     D7   | G     |
+                        塵 俗 的 愛 只 在 乎 曾 擁 有 一刻燦爛便要走
+                        | C    | Em   | F     | G     |
+                        而 我 卻 確 信 愛 是 恆 久 碰到了你已無別求
+                        | F    G    | E7    Am    | F     D7    | Gsus4 G    |
+                        無 從 解 釋 不 可 說 明 的 愛 千秋過後仍長存不朽
 
-【Chorus】
-| F    C/E    | Dm7    C    |
-我 的 名 字 藏 在 祢 心 ， 刻 在 祢 心 上
-| Bb    F/A    | Gm7    Csus4    |
-塗 改 不 了 ， 無 人 可 阻 隔 ， 祢 對 我 的 愛
-| F    C/E    | Dm7    C    |
-我 的 名 字 存 在 那 刻 ， 已 在 祢 心 上
-| Bb    F/A    | Gm7    Csus4    | F        |
-如 此 的 愛 ， 何 等 寶 貴 ， 一 生 不 改 變 ， 單 單 屬 祢
-
-【Bridge】
-| F    C/E    | Dm7    C    |
-我 愛 慕 祢
-| Bb    F/A    | Gm7    Csus4    |
-我 渴 慕 祢
-| F    C/E    | Dm7    C    |
-我 愛 慕 祢
-| Bb    F/A    | Gm7    Csus4    | F         |
-一 生 愛 你 ， 今 單 單 屬 你 。
-                </pre>
-            </div>
-            <div class="footer-note">
-                <span>✨ 我的名字藏在祢心，刻在祢心上</span>
-                <span class="small-hint">🎸 F大調 | 原曲和弦完整收錄</span>
+                        【Chorus】
+                        | C    G    | Am           | F     C     | D     G7   |
+                        誰 人 受 痛 苦 被 懸 掛 在 木 頭 至高的愛盡見於刺穿的手
+                        | F    G    | Em    Am    | F     D     | Gsus4 G    |
+                        看 血 在 流 反 映 愛 沒 保 留 持續不死的愛到萬世不休
+                        | C    G    | Am           | F     C     | D     G7   |
+                        惟 求 奉 上 生 命 全 歸 主 所 有 要將一切盡獻於我主的手
+                        | F    G    | Em    Am    | Dm    F     G     | C    |
+                        我 已 決 定 今 生 再 沒 所 求 惟望得主稱讚已足夠
+                    </pre>
+                </div>
+                <div class="footer-note">
+                    <span>💖 誰人受痛苦被懸掛在木頭</span>
+                    <span class="small-hint">🎸 F大調 | Capo 5 彈C調指法</span>
+                </div>
             </div>
         </div>
-    </div>
 
-    <!-- 8. 榮雨降下 -->
-    <div id="song5" class="song-panel">
-        <div class="song-card">
-            <div class="song-header">
-                <span class="song-title">榮雨降下</span>
-                <span class="key-badge">Key：G</span>
-                <span class="capo-badge">Capo 0</span>
-            </div>
-            <div class="original-info">
-                <span>🎵 菜頭</span>
-                <span>🌧️ 榮雨降下，枯乾的心在祢恩手中歷變化</span>
-            </div>
-            <div class="chord-lyric">
-                <pre>
-【Verse】
-| G      | D/F#   | C      | Cm     D     |
-看 疾病與苦困 饑荒中 瘟疫裡 看 憤怒和懼怕 在蔓延 
-| G      | D/F#   | C      | Am     | C/D    | D7     |
-神祢 定會憐憫傾聽 屬祢子民同心禱告 願祢旨意成就在這裡 榮耀得彰顯
+        <!-- 8. 儘管我尚未看見 -->
+        <div id="song7" class="song-panel">
+            <div class="song-card">
+                <div class="song-header">
+                    <span class="song-title">儘管我尚未看見</span>
+                    <span class="key-badge">Key：E</span>
+                    <span class="capo-badge">Capo 0</span>
+                </div>
+                <div class="original-info">
+                    <span>🎵 菜頭</span>
+                    <span>🌿 因著信，未見之事的確據</span>
+                </div>
+                <div class="chord-lyric">
+                    <pre>
+                        【Verse】
+                        | E  - - B/D#  | C#m7  - - E/B  |
+                        (浪) 還 在 每 刻 翻 騰 (處) 處 有 暗 湧，
+                        | Esus  - - G#m7    | A#m - A/B B7  |
+                        () 想 找 一 個 海 港 () 能 靠 岸。
+                        | E  - - B/D#  | C#m7 - Bm7 D/E  |
+                        (密) 雲 在 半 空 交 纏 (偶) 爾 暗 了 點，
+                        | Asus2  - G#m7  | A#m7  G#7    |
+                        () 想 找 到 一 抹 光 () 伴 隨 我 走 過。
+                        | C#m7  Asus2    | E  - - B/D#   |
+                        () 當 風 沙 遮 蔽 遠 方 () 神 祢 是 我 依 傍，
+                        | C#m7  Asus2    | E  - - G#7  |
+                        () 滔 天 翻 湧 過 海 浪 () 仍 是 我 安 息 港。
+                        | C#m7  Asus2    | E - - B/D#   | Asus2  - - F#m  |
+                        () 當 天 空 不 再 有 光 () 黑 暗 總 不 吞 沒 (我)，
+                        | A/B       |
+                        在 祢 蔭 (下) 可 安 躺。
 
-【Chorus】
-| G      | D/F#   | Em     | G/D    |
-求祢細聽 哭泣與吶喊聲 漆黑絕望的都市（香港）渴望祢憐憫臨在
-| C      | Bm     Em     | Am     | C/D    D7     |
-榮雨降下 枯乾的都市能轉化 求主帶領 從軟弱裡興起
-| G      | D/F#   | Em     | G/D    |
-求主細聽 哭泣與吶喊聲 漆黑絕望的都市（香港）渴望祢憐憫臨在
-| C      | Bm     Em     | Am     G/B    | C      D      | G      |
-榮雨降下 枯乾的心 在祢恩手中歷變化 行公義 好憐憫 存謙卑的心 踏主足印
-                </pre>
-            </div>
-            <div class="footer-note">
-                <span>🌧️ 求祢細聽，哭泣與吶喊聲</span>
-                <span class="small-hint">🎸 G大調 | 復興詩歌</span>
+                        【Chorus】
+                        | B       | E - - B/D#  | C#m7 - - E/B  |
+                        () 儘 管 我 (這) 刻 看 不 見 (還) 沒 看 得 見，
+                        | Asus2 - - E/G# | F#m7 - - A/B |
+                        我 也 (願) 屈 膝 祢 面 前 (稱) 揚 祢 美 善。
+                        | B       | E - - B/D#  | C#m7 - - E/B  |
+                        (即) 使 看 不 見 (還) 沒 看 得 見，
+                        | Asus2 - - E/G# | F#m7 A/B - E |
+                        我 也 (願) 相 信 祢 (恩) 光 總 照 遍。
+                    </pre>
+                </div>
+                <div class="footer-note">
+                    <span>✨ 因著信，未見之事的確據</span>
+                    <span class="small-hint">🎸 E大調 | 保留複合小節編排</span>
+                </div>
             </div>
         </div>
-    </div>
 
-    <!-- 9. 儘管我尚未看見 -->
-    <div id="song7" class="song-panel">
-        <div class="song-card">
-            <div class="song-header">
-                <span class="song-title">儘管我尚未看見</span>
-                <span class="key-badge">Key：E</span>
-                <span class="capo-badge">Capo 0</span>
-            </div>
-            <div class="original-info">
-                <span>🎵 菜頭</span>
-                <span>🌿 因著信，未見之事的確據</span>
-            </div>
-            <div class="chord-lyric">
-                <pre>
-【Verse】
-| E  - - B/D#  | C#m7  - - E/B  |
-(浪) 還 在 每 刻 翻 騰 (處) 處 有 暗 湧，
-| Esus  - - G#m7    | A#m - A/B B7  |
-() 想 找 一 個 海 港 () 能 靠 岸。
-| E  - - B/D#  | C#m7 - Bm7 D/E  |
-(密) 雲 在 半 空 交 纏 (偶) 爾 暗 了 點，
-| Asus2  - G#m7  | A#m7  G#7    |
-() 想 找 到 一 抹 光 () 伴 隨 我 走 過。
-| C#m7  Asus2    | E  - - B/D#   |
-() 當 風 沙 遮 蔽 遠 方 () 神 祢 是 我 依 傍，
-| C#m7  Asus2    | E  - - G#7  |
-() 滔 天 翻 湧 過 海 浪 () 仍 是 我 安 息 港。
-| C#m7  Asus2    | E - - B/D#   | Asus2  - - F#m  |
-() 當 天 空 不 再 有 光 () 黑 暗 總 不 吞 沒 (我)，
-| A/B       |
-在 祢 蔭 (下) 可 安 躺。
+        <!-- 9. 榮雨降下 (隱藏，僅保留面板) -->
+        <div id="song5" class="song-panel">
+            <div class="song-card">
+                <div class="song-header">
+                    <span class="song-title">榮雨降下</span>
+                    <span class="key-badge">Key：G</span>
+                    <span class="capo-badge">Capo 0</span>
+                </div>
+                <div class="original-info">
+                    <span>🎵 菜頭</span>
+                    <span>🌧️ 榮雨降下，枯乾的心在祢恩手中歷變化</span>
+                </div>
+                <div class="chord-lyric">
+                    <pre>
+                        【Verse】
+                        | G      | D/F#   | C      | Cm     D     |
+                        看 疾病與苦困 饑荒中 瘟疫裡 看 憤怒和懼怕 在蔓延
+                        | G      | D/F#   | C      | Am     | C/D    | D7     |
+                        神祢 定會憐憫傾聽 屬祢子民同心禱告 願祢旨意成就在這裡 榮耀得彰顯
 
-【Chorus】
-| B       | E - - B/D#  | C#m7 - - E/B  |
-() 儘 管 我 (這) 刻 看 不 見 (還) 沒 看 得 見，
-| Asus2 - - E/G# | F#m7 - - A/B |
-我 也 (願) 屈 膝 祢 面 前 (稱) 揚 祢 美 善。
-| B       | E - - B/D#  | C#m7 - - E/B  |
-(即) 使 看 不 見 (還) 沒 看 得 見，
-| Asus2 - - E/G# | F#m7 A/B - E |
-我 也 (願) 相 信 祢 (恩) 光 總 照 遍。
-                </pre>
-            </div>
-            <div class="footer-note">
-                <span>✨ 因著信，未見之事的確據</span>
-                <span class="small-hint">🎸 E大調 | 保留複合小節編排</span>
+                        【Chorus】
+                        | G      | D/F#   | Em     | G/D    |
+                        求祢細聽 哭泣與吶喊聲 漆黑絕望的都市（香港）渴望祢憐憫臨在
+                        | C      | Bm     Em     | Am     | C/D    D7     |
+                        榮雨降下 枯乾的都市能轉化 求主帶領 從軟弱裡興起
+                        | G      | D/F#   | Em     | G/D    |
+                        求主細聽 哭泣與吶喊聲 漆黑絕望的都市（香港）渴望祢憐憫臨在
+                        | C      | Bm     Em     | Am     G/B    | C      D      | G      |
+                        榮雨降下 枯乾的心 在祢恩手中歷變化 行公義 好憐憫 存謙卑的心 踏主足印
+                    </pre>
+                </div>
+                <div class="footer-note">
+                    <span>🌧️ 求祢細聽，哭泣與吶喊聲</span>
+                    <span class="small-hint">🎸 G大調 | 復興詩歌</span>
+                </div>
             </div>
         </div>
+
     </div>
-</div>
 
-<div class="busking-footer">
-    <span class="date-icon">🗓️</span>
-    <span class="date-text">
-        2026年6月27日 (六) 下午 8:00<br />
-        🎼 街頭 Busking 🎶
-    </span>
-    <span class="location">📍 葵芳｜歡迎 Join Us</span>
-</div>
+    <!-- ===== 底部資訊欄 ===== -->
+    <div class="busking-footer">
+        <span class="date-icon">🗓️</span>
+        <span class="date-text">
+            2026年6月27日 (六) 下午 8:00<br />
+            🎼 街頭 Busking 🎶
+        </span>
+        <span class="location">📍 葵芳｜歡迎 Join Us</span>
+    </div>
 
-<script>
-    // ========== 全局配置物件 ==========
-    // 透過修改這個陣列，您可以控制 tabBar 上歌曲的顯示、隱藏與順序。
-    window.songTabsConfig = [
-        { id: "song0", label: "🕊️ 1. 安靜", visible: true },
-        { id: "song1", label: "🌟 2. 遇見神", visible: true },
-        { id: "song6", label: "🕯️ 3. 恩典的記號", visible: true },
-        { id: "song2", label: "✝️ 4. 十字架", visible: true },
-        { id: "song4", label: "🏡 5. 回家", visible: true },
-        { id: "song8", label: "📖 6. 我的名字在祢心上", visible: true },
-        { id: "song5", label: "🌧️ 榮雨降下", visible: false },
-        { id: "song3", label: "💖 7. 愛是不保留", visible: true },
-        { id: "song7", label: "🌿 8. 儘管我尚未看見", visible: true }
-    ];
+    <!-- ============================================================ -->
+    <!-- JavaScript -->
+    <script>
+        (function() {
+            'use strict';
 
-    function buildTabBar() {
-        const tabBar = document.getElementById('tabBar');
-        if (!tabBar) return;
-        tabBar.innerHTML = '';
-        const visibleTabs = window.songTabsConfig.filter(item => item.visible === true);
-        for (let item of visibleTabs) {
-            const btn = document.createElement('button');
-            btn.className = 'tab-button';
-            btn.setAttribute('data-song', item.id);
-            btn.textContent = item.label;
-            btn.addEventListener('click', (e) => {
-                const songId = btn.getAttribute('data-song');
-                if (songId) {
-                    switchToSong(songId);
-                    btn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-                }
-            });
-            tabBar.appendChild(btn);
-        }
-        const currentActivePanel = document.querySelector('.song-panel.active-panel');
-        if (currentActivePanel && document.querySelector(`.tab-button[data-song="${currentActivePanel.id}"]`)) {
-            document.querySelectorAll('.tab-button').forEach(btn => {
-                if (btn.getAttribute('data-song') === currentActivePanel.id) {
-                    btn.classList.add('active');
+            // ===== 配置：控制標籤欄顯示與順序 =====
+            window.songTabsConfig = [
+                { id: 'song0', label: '🕊️ 1. 安靜', visible: true },
+                { id: 'song1', label: '🌟 2. 遇見神', visible: true },
+                { id: 'song6', label: '🕯️ 3. 恩典的記號', visible: true },
+                { id: 'song2', label: '✝️ 4. 十字架', visible: true },
+                { id: 'song4', label: '🏡 5. 回家', visible: true },
+                { id: 'song8', label: '📖 6. 我的名字在祢心上', visible: true },
+                { id: 'song3', label: '💖 7. 愛是不保留', visible: true },
+                { id: 'song7', label: '🌿 8. 儘管我尚未看見', visible: true },
+                { id: 'song5', label: '🌧️ 榮雨降下', visible: false }
+            ];
+
+            // ===== 建立標籤欄 =====
+            function buildTabBar() {
+                var tabBar = document.getElementById('tabBar');
+                if (!tabBar) return;
+                tabBar.innerHTML = '';
+
+                var visibleTabs = window.songTabsConfig.filter(function(item) {
+                    return item.visible === true;
+                });
+
+                visibleTabs.forEach(function(item) {
+                    var btn = document.createElement('button');
+                    btn.className = 'tab-button';
+                    btn.setAttribute('data-song', item.id);
+                    btn.textContent = item.label;
+
+                    btn.addEventListener('click', function(e) {
+                        var songId = btn.getAttribute('data-song');
+                        if (songId) {
+                            switchToSong(songId);
+                            btn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+                        }
+                    });
+
+                    tabBar.appendChild(btn);
+                });
+
+                // 如果當前沒有 active panel，或 active panel 不在可見清單中，則切換到第一個
+                var currentActive = document.querySelector('.song-panel.active-panel');
+                var visibleIds = visibleTabs.map(function(item) { return item.id; });
+
+                if (!currentActive || visibleIds.indexOf(currentActive.id) === -1) {
+                    if (visibleTabs.length > 0) {
+                        switchToSong(visibleTabs[0].id);
+                    }
                 } else {
-                    btn.classList.remove('active');
+                    // 同步按鈕狀態
+                    updateActiveButton(currentActive.id);
                 }
+            }
+
+            // ===== 切換歌曲 =====
+            function switchToSong(songId) {
+                var panels = document.querySelectorAll('.song-panel');
+                panels.forEach(function(panel) {
+                    panel.classList.remove('active-panel');
+                });
+
+                var targetPanel = document.getElementById(songId);
+                if (targetPanel) {
+                    targetPanel.classList.add('active-panel');
+                }
+
+                updateActiveButton(songId);
+            }
+
+            // ===== 更新按鈕 active 狀態 =====
+            function updateActiveButton(songId) {
+                var buttons = document.querySelectorAll('.tab-button');
+                buttons.forEach(function(btn) {
+                    if (btn.getAttribute('data-song') === songId) {
+                        btn.classList.add('active');
+                    } else {
+                        btn.classList.remove('active');
+                    }
+                });
+            }
+
+            // ===== 暴露重新整理方法（方便除錯） =====
+            window.refreshTabBar = function() {
+                buildTabBar();
+            };
+
+            // ===== 初始化 =====
+            document.addEventListener('DOMContentLoaded', function() {
+                buildTabBar();
             });
-        } else {
-            if (visibleTabs.length > 0) {
-                switchToSong(visibleTabs[0].id);
-            }
-        }
-    }
 
-    function switchToSong(songId) {
-        const panels = document.querySelectorAll('.song-panel');
-        panels.forEach(panel => panel.classList.remove('active-panel'));
-        const targetPanel = document.getElementById(songId);
-        if (targetPanel) targetPanel.classList.add('active-panel');
-        document.querySelectorAll('.tab-button').forEach(btn => {
-            if (btn.getAttribute('data-song') === songId) {
-                btn.classList.add('active');
-            } else {
-                btn.classList.remove('active');
-            }
-        });
-    }
+        })();
+    </script>
 
-    window.refreshTabBar = function() {
-        buildTabBar();
-        const visibleIds = window.songTabsConfig.filter(item => item.visible).map(item => item.id);
-        if (visibleIds.length > 0) {
-            const currentActive = document.querySelector('.song-panel.active-panel');
-            if (!currentActive || !visibleIds.includes(currentActive.id)) {
-                switchToSong(visibleIds[0]);
-            } else {
-                switchToSong(currentActive.id);
-            }
-        }
-    };
-
-    window.addEventListener('DOMContentLoaded', () => {
-        buildTabBar();
-        const visibleFirst = window.songTabsConfig.find(item => item.visible === true);
-        if (visibleFirst && !document.querySelector('.song-panel.active-panel')) {
-            switchToSong(visibleFirst.id);
-        }
-        document.body.style.overflow = 'hidden';
-    });
-</script>
 </body>
 </html>
